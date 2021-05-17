@@ -1,0 +1,9 @@
+tvmachine_import.csv_export:
+  path: '/admin/content/csv_export'
+  defaults:
+    _form: '\Drupal\tvmachine_import\Form\ImportForm'
+    _title: 'Import program'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,9 @@
+tvmachine_delete.delete:
+  path: '/delete'
+  defaults:
+    _form: '\Drupal\tvmachine_delete\Form\DeleteForm'
+    _title: 'Delete template files'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,7 @@
+<?php
+
+function tvmachine_visibility_page_attachments(array &$page) {
+
+  $page['#attached']['library'][] = 'tvmachine_visibility/tvmachine_visibility';
+  
+}

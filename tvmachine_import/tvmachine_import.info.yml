@@ -1,0 +1,9 @@
+name: TVMachine import of programs
+type: module
+description: This module to allow import the programs from csv
+core_version_requirement: ^8.8 || ^9
+# core: 8.x
+package: tvmachine
+dependencies:
+#  - drupal:dropzonejs
+  - drupal:tvmachine_blocks

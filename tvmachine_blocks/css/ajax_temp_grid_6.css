@@ -1,0 +1,578 @@
+.visibility_hide_element { display: none !important;}
+
+.tvbanner {
+	float: left;
+	height: 90px;
+	width: 818px;
+	border-color: #bbbbbb;
+	border-style: none solid solid solid;
+	border-width: 0 1px 1px 1px;
+	background: #FFFFFF;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+	overflow:hidden;
+	white-space:normal;
+	clear:both;
+	}
+
+.tvbanner-bottom {
+	float: left;
+	height: 90px;
+	width: 818px;
+	border-color: #bbbbbb;
+	border-style: none solid none solid;
+	border-width: 0 1px 0 1px;
+	background: #ffffff;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+	overflow:hidden;
+	white-space:normal;
+	clear:both;
+	}
+	
+.tvlogo {
+	float: left;
+	height: 59px;
+	width: 88px;
+	border-color: #bbbbbb;
+	border-style: none dotted solid none;
+	border-width: 0 1px 1px 0;
+	text-align: right;
+	vertical-align: middle; 
+	margin: 0; 
+	padding: 0;
+	overflow:hidden;
+	white-space:normal;
+	clear:left;
+	}
+
+.tvlogo img {
+	height:59px;
+	width:77px;
+	padding-top:0px;
+	}
+
+.tvprog a * {
+	vertical-align:top;
+	}
+
+.progr_thumb {
+	margin: -5px 3px 0 2px;
+	padding: 0 2px 0 0;
+	float: left;
+	width: 53px;
+	height: 53px;
+	}
+
+.tvprog, .tvpeliculas, .tvseries, .tvdeportes, .tvnoticias, .tvinfantil, .tventretenimiento, .tvdocumental, .tvconcursos, .tvcorazon, .tvreality {
+	float: left;
+	height: 46px;
+	border-color: #bbbbbb;
+	border-style: none dotted solid none;
+	border-width: 0 1px 1px 0;
+	font-size: 13px;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	line-height:1.3;
+	color: #111111;
+	text-align: left;
+	vertical-align: middle; 
+	margin: 0; 
+	padding:8px 1px 5px 1px;
+	overflow:hidden;
+	text-overflow:ellipsis; 
+	white-space:normal;
+	}
+.tvprog a:link, .tvpeliculas a:link, .tvseries a:link, .tvdeportes a:link, .tvnoticias a:link, .tvinfantil a:link, .tventretenimiento a:link, .tvdocumental a:link, .tvconcursos a:link, .tvcorazon a:link, .tvreality a:link { color: #111111; text-decoration: none; }
+.tvprog a:visited, .tvpeliculas a:visited, .tvseries a:visited, .tvdeportes a:visited, .tvnoticias a:visited, .tvinfantil a:visited, .tventretenimiento a:visited, .tvdocumental a:visited, .tvconcursos a:visited, .tvcorazon a:visited, .tvreality a:visited { color: #111111; text-decoration: none; }
+.tvprog a:active, .tvpeliculas a:active, .tvseries a:active, .tvdeportes a:active, .tvnoticias a:active, .tvinfantil a:active, .tventretenimiento a:active, .tvdocumental a:active, .tvconcursos a:active, .tvcorazon a:active, .tvreality a:active {  color: #111111; text-decoration: none; }
+.tvprog a:hover, .tvpeliculas a:hover, .tvseries a:hover, .tvdeportes a:hover, .tvnoticias a:hover, .tvinfantil a:hover, .tventretenimiento a:hover, .tvdocumental a:hover, .tvconcursos a:hover, .tvcorazon a:hover, .tvreality a:hover {  color: #111111; text-decoration: none; }
+
+.peliculas_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 0;
+	display:block;
+	} /* fbf9fe */
+
+.series_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -59px;
+	display:block;
+	} /* f9fbff  */
+
+.deportes_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -118px;
+	display:block;
+	} /* fbfeeb  */
+
+.infantil_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -177px;
+	display:block;
+	} /* dffff5  */
+
+.entretenimiento_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -236px;
+	display:block;
+	} /* fffdeb  */
+
+.documental_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -295px;
+	display:block;
+	} /* fbfaeb  */
+
+.noticias_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -354px;
+	display:block;
+	} /* fff8f7 */
+
+.concursos_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -413px;
+	display:block;
+	} /* fefed8  */
+
+.corazon_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -472px;
+	display:block;
+	} /* fff9ff  */
+
+.reality_highlight {
+	background: #ffffff url('../images/bg-cat-1.png') repeat-x top right;
+	background-position: 0 -531px;
+	display:block;
+	} /* f3f3f3  */
+
+.tvplus {
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	color:#f38e00;
+	}
+
+.tvarrow {
+	float: left;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	color:#f38e00;
+	}
+
+.tvhour {
+	float: left;
+	padding: 1px 2px 0 0;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color:#f38e00;
+	}
+
+.contain{
+	float: left;
+	height: 46px;
+	border-color: #FFFFFF;
+	border-style: none solid solid none;
+	border-width: 0 1px 1px 0;
+	background: #FFFFFF;
+	vertical-align: middle; 
+	margin: 0; 
+	padding:8px 1px 5px 3px;
+	overflow:hidden;
+	width: 600px;
+	}
+
+#ajax-here{
+	overflow-y:scroll;
+	overflow-x:hidden;
+	}
+
+#ajax-here a {
+	cursor:pointer;
+	color:#0000a0;
+	text-decoration:none;
+	}
+
+#ajax-here a:hover {
+	color:#0000a0;
+	text-decoration:none;
+	}
+
+.link-details-ajax a{
+	color: #ffffff!important;
+	}
+
+.html-advertisement {
+	margin:0;
+	padding:0;
+	font-size:10pt;
+	}
+
+#channel-61{
+	width:100%;
+	}
+
+.home-details-ajax {
+	border-left: #111111 solid 11px;
+	}
+
+img {
+	border-style: none;
+	}
+
+#channel-51 div.tvlogo, /*la1 */
+#channel-52 div.tvlogo, /*la2 */
+#channel-53 div.tvlogo, /*antena3 */
+#channel-54 div.tvlogo, /*cuatro */
+#channel-55 div.tvlogo, /*telecinco */
+#channel-56 div.tvlogo, /*lasexta */
+#channel-57 div.tvlogo, /*paramountnetwork */
+#channel-58 div.tvlogo, /*divinity */
+#channel-59 div.tvlogo, /*dkiss */
+#channel-60 div.tvlogo, /*ten */
+#channel-61 div.tvlogo, /*bemad */
+#channel-62 div.tvlogo, /*mega */
+#channel-63 div.tvlogo, /*dmax */
+#channel-64 div.tvlogo, /*energy */
+#channel-65 div.tvlogo, /*fdf */
+#channel-66 div.tvlogo, /*atreseries */
+#channel-67 div.tvlogo, /*neox */
+#channel-68 div.tvlogo, /*nova */
+#channel-69 div.tvlogo, /*trece */
+#channel-70 div.tvlogo, /*boing */
+#channel-71 div.tvlogo, /*clan */
+#channel-72 div.tvlogo, /*disneychannel */
+#channel-73 div.tvlogo, /*teledeporte */
+#channel-74 div.tvlogo, /*gol */
+#channel-75 div.tvlogo, /*realmadridtv */
+#channel-76 div.tvlogo, /*bomcine */
+#channel-77 div.tvlogo /*eltorotv */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 -59px;
+	margin: 0;
+	display:block;
+}/* orange */
+ 
+#channel-78 div.tvlogo, /*telemadrid */
+#channel-79 div.tvlogo, /*laotra */
+#channel-80 div.tvlogo, /*8madridtv */
+#channel-87 div.tvlogo, /*apunt */
+#channel-88 div.tvlogo, /*la8mediterraneo */
+#channel-91 div.tvlogo, /*tvg */
+#channel-92 div.tvlogo, /*tvg2 */
+#channel-95 div.tvlogo, /*tvcanaria */
+#channel-97 div.tvlogo, /*ib3 */
+#channel-99 div.tvlogo, /*7rm */
+#channel-101 div.tvlogo /*tpa */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 -177px;
+	margin: 0;
+	display:block;
+}/* wine */
+
+#channel-81 div.tvlogo, /*tv3 */
+#channel-82 div.tvlogo, /*8tv */
+#channel-83 div.tvlogo, /*super333 */
+#channel-84 div.tvlogo, /*esport3 */
+#channel-85 div.tvlogo, /*barcatv */
+#channel-86 div.tvlogo, /*beteve */
+#channel-89 div.tvlogo, /*canalsur */
+#channel-90 div.tvlogo, /*andaluciatv */
+#channel-93 div.tvlogo, /*etb1 */
+#channel-94 div.tvlogo, /*etb2 */
+#channel-96 div.tvlogo, /*cmmedia */
+#channel-98 div.tvlogo, /*aragontv */
+#channel-100 div.tvlogo, /*canalextremadura */
+#channel-102 div.tvlogo, /*cyl7 */
+#channel-103 div.tvlogo /*la8 */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 0;
+	margin: 0;
+	display:block;
+}/* red */
+
+#channel-104 div.tvlogo, /*decasa */
+#channel-105 div.tvlogo, /*canalcocina */
+#channel-106 div.tvlogo, /*viajar */
+#channel-107 div.tvlogo, /*nationalgeographic */
+#channel-108 div.tvlogo, /*natgeowild */
+#channel-109 div.tvlogo, /*odisea */
+#channel-110 div.tvlogo, /*discoverychannel */
+#channel-111 div.tvlogo, /*historia */
+#channel-112 div.tvlogo, /*crimeninvestigacion */
+#channel-113 div.tvlogo, /*blaze */
+#channel-114 div.tvlogo, /*fox */
+#channel-115 div.tvlogo, /*foxlife */
+#channel-116 div.tvlogo, /*axn */
+#channel-117 div.tvlogo, /*axnwhite */
+#channel-118 div.tvlogo, /*calle13 */
+#channel-119 div.tvlogo, /*syfy */
+#channel-120 div.tvlogo, /*dark */
+#channel-121 div.tvlogo, /*tnt */
+#channel-122 div.tvlogo, /*cosmo */
+#channel-123 div.tvlogo, /*mtv */
+#channel-124 div.tvlogo, /*comedycentral */
+#channel-125 div.tvlogo, /*sundancetv */
+#channel-126 div.tvlogo, /*xtrm */
+#channel-127 div.tvlogo, /*canalhollywood */
+#channel-128 div.tvlogo, /*tcm */
+#channel-129 div.tvlogo, /*somos */
+#channel-130 div.tvlogo /*amc */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 -236px;
+	margin: 0;
+	display:block;
+}/* blue */
+
+#channel-131 div.tvlogo, /*cero */
+#channel-132 div.tvlogo, /*movistarestrenos */
+#channel-133 div.tvlogo, /*movistarcinedocroll */
+#channel-134 div.tvlogo, /*movistaraccion */
+#channel-135 div.tvlogo, /*movistarcomedia */
+#channel-136 div.tvlogo, /*movistardrama */
+#channel-137 div.tvlogo, /*movistarcineespanol */
+#channel-138 div.tvlogo, /*movistarseries */
+#channel-139 div.tvlogo /*movistarseriesmania */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 -354px;
+	margin: 0;
+	display:block;
+}/* black */
+
+#channel-140 div.tvlogo, /*movistardeportes */
+#channel-141 div.tvlogo, /*movistargolf */
+#channel-142 div.tvlogo, /*movistarformula1 */
+#channel-143 div.tvlogo, /*movistarlaliga */
+#channel-144 div.tvlogo, /*movistarlaliga1 */
+#channel-145 div.tvlogo, /*movistarlaliga2 */
+#channel-146 div.tvlogo, /*movistarlaliga3 */
+#channel-147 div.tvlogo, /*movistarlaliga4 */
+#channel-148 div.tvlogo, /*laligatvbar */
+#channel-149 div.tvlogo, /*movistarligadecampeones */
+#channel-150 div.tvlogo, /*movistarligadecampeones1 */
+#channel-151 div.tvlogo, /*movistarligadecampeones2 */
+#channel-152 div.tvlogo, /*movistarligadecampeones3 */
+#channel-153 div.tvlogo, /*movistarligadecampeones4 */
+#channel-154 div.tvlogo, /*vamos */
+#channel-155 div.tvlogo, /*torostv */
+#channel-156 div.tvlogo, /*eurosport1 */
+#channel-157 div.tvlogo, /*eurosport2 */
+#channel-158 div.tvlogo, /*daznmotogp */
+#channel-159 div.tvlogo, /*daznpremiere */
+#channel-160 div.tvlogo, /*dazncopadelrey */
+#channel-161 div.tvlogo, /*laligasports */
+#channel-162 div.tvlogo /*ubeat */
+{
+	background: url('../images/bg-logo.png') no-repeat;
+	background-position: 0 -295px;
+	margin: 0;
+	display:block;
+}/* green */
+
+.tvlogo51 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -0px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*la1 */
+.tvlogo52 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -50px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*la2 */
+.tvlogo53 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*antena3 */
+.tvlogo54 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*cuatro */
+.tvlogo55 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*telecinco */
+.tvlogo56 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*lasexta */
+.tvlogo57 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*paramountnetwork */
+.tvlogo58 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*divinity */
+.tvlogo59 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*dkiss */
+.tvlogo60 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*ten */
+.tvlogo61 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*bemad */
+.tvlogo62 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*mega */
+.tvlogo63 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -600px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*dmax */
+.tvlogo64 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -650px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*energy */
+.tvlogo65 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -700px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*fdf */
+.tvlogo66 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -750px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*atreseries */
+.tvlogo67 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -800px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*neox */
+.tvlogo68 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -850px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*nova */
+.tvlogo69 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -900px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*trece */
+.tvlogo70 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -950px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*boing */
+.tvlogo71 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1000px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*clan */
+.tvlogo72 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1050px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*disneychannel */
+.tvlogo73 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*teledeporte */
+.tvlogo74 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*gol */
+.tvlogo75 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*realmadridtv */
+.tvlogo76 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*bomcine */
+.tvlogo77 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*eltorotv */
+.tvlogo78 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*telemadrid */
+.tvlogo79 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*laotra */
+.tvlogo80 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*8madridtv */
+.tvlogo81 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tv3 */
+.tvlogo82 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*8tv */
+.tvlogo83 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1600px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*super333 */
+.tvlogo84 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1650px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*esport3 */
+.tvlogo85 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1700px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*barcatv */
+.tvlogo86 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1750px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*beteve */
+.tvlogo87 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1800px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*apunt */
+.tvlogo88 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1850px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*la8mediterraneo */
+.tvlogo89 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1900px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*canalsur */
+.tvlogo90 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -1950px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*andaluciatv */
+.tvlogo91 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2000px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tvg */
+.tvlogo92 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2050px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tvg2 */
+.tvlogo93 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*etb1 */
+.tvlogo94 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*etb2 */
+.tvlogo95 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tvcanaria */
+.tvlogo96 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*cmmedia */
+.tvlogo97 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*ib3 */
+.tvlogo98 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*aragontv */
+.tvlogo99 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*7rm */
+.tvlogo100 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*canalextremadura */
+.tvlogo101 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tpa */
+.tvlogo102 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*cyl7 */
+.tvlogo103 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2600px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*la8 */
+.tvlogo104 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2650px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*decasa */
+.tvlogo105 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2700px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*canalcocina */
+.tvlogo106 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2750px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*viajar */
+.tvlogo107 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2800px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*nationalgeographic */
+.tvlogo108 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2850px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*natgeowild */
+.tvlogo109 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2900px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*odisea */
+.tvlogo110 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -2950px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*discoverychannel */
+.tvlogo111 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3000px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*historia */
+.tvlogo112 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3050px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*crimeninvestigacion */
+.tvlogo113 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*blaze */
+.tvlogo114 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*fox */
+.tvlogo115 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*foxlife */
+.tvlogo116 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*axn */
+.tvlogo117 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*axnwhite */
+.tvlogo118 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*calle13 */
+.tvlogo119 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*syfy */
+.tvlogo120 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*dark */
+.tvlogo121 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tnt */
+.tvlogo122 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*cosmo */
+.tvlogo123 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3600px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*mtv */
+.tvlogo124 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3650px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*comedycentral */
+.tvlogo125 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3700px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*sundancetv */
+.tvlogo126 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3750px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*xtrm */
+.tvlogo127 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3800px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*canalhollywood */
+.tvlogo128 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3850px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*tcm */
+.tvlogo129 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3900px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*somos */
+.tvlogo130 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -3950px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*amc */
+.tvlogo131 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4000px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*cero */
+.tvlogo132 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4050px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarestrenos */
+.tvlogo133 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarcinedocroll */
+.tvlogo134 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistaraccion */
+.tvlogo135 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarcomedia */
+.tvlogo136 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistardrama */
+.tvlogo137 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarcineespanol */
+.tvlogo138 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarseries */
+.tvlogo139 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarseriesmania */
+.tvlogo140 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistardeportes */
+.tvlogo141 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistargolf */
+.tvlogo142 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarformula1 */
+.tvlogo143 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4600px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarlaliga */
+.tvlogo144 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4650px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarlaliga1 */
+.tvlogo145 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4700px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarlaliga2 */
+.tvlogo146 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4750px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarlaliga3 */
+.tvlogo147 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4800px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarlaliga4 */
+.tvlogo148 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4850px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*laligatvbar */
+.tvlogo149 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4900px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarligadecampeones */
+.tvlogo150 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -4950px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarligadecampeones1 */
+.tvlogo151 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5000px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarligadecampeones2 */
+.tvlogo152 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5050px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarligadecampeones3 */
+.tvlogo153 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5100px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*movistarligadecampeones4 */
+.tvlogo154 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5150px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*vamos */
+.tvlogo155 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5200px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*torostv */
+.tvlogo156 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5250px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*eurosport1 */
+.tvlogo157 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5300px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*eurosport2 */
+.tvlogo158 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5350px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*daznmotogp */
+.tvlogo159 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5400px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*daznpremiere */
+.tvlogo160 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5450px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*dazncopadelrey */
+.tvlogo161 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5500px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*laligasports */
+.tvlogo162 {background: url('../images/television-es-60x50.png?004') no-repeat; background-position: 0 -5550px; height:50px; margin: 4px 0 0 20px; width:60px; display:block;} /*ubeat */
+
+.tv-button {
+	background-color: #dfdfdf;
+	color: #111111 !important;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 21px;
+	line-height: 22px;
+	margin: 4px 6px 0 0;
+	padding: 0;
+	text-decoration: none !important;
+	text-indent: 10px;
+	width: 140px;
+	}
+
+.button-yesterday {
+	width: 50px;
+	}
+
+.button-today {
+	width: 140px;
+	}
+
+.button-tomorrow {
+	width: 100px;
+	}
+
+.button-yesterday:hover, .button-yesterday-active,
+.button-today:hover, .button-today-active,
+.button-tomorrow:hover, .button-tomorrow-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	height: 25px;
+	margin: 0 6px 2px 0;
+	line-height: 30px;
+	}
+
+.button-yesterday:hover, .button-yesterday-active {
+	width: 50px;
+	}
+
+.button-today:hover, .button-today-active {
+	width: 140px;
+	}
+
+.button-tomorrow:hover, .button-tomorrow-active {
+	width: 100px;
+	}
+
+.button-time {
+	height: 20px;
+	line-height: 24px;
+	margin: 4px 8px 0 0;
+	text-indent: 5px;
+	width: 53px
+	}
+
+.button-time:hover, .button-time-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	height: 24px;
+	line-height: 32px;
+	margin: 0 8px 3px 0;
+	}
+
+.button-time-active {
+	outline: none;
+	width:53px;
+	text-indent: 5px;
+	}
+
+/* Lazy load opacity fix */
+.js .lazyload,
+.js .lazyloading {
+	opacity: 1;
+	}
+.js .lazyloaded {
+	opacity: 1;
+	transition: all 0s ease 0s;
+	}

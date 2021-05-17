@@ -1,0 +1,12 @@
+name: TVMachine pages
+type: module
+description: 'Implement custom pages of TVMachine'
+core_version_requirement: ^8.8 || ^9
+package: tvmachine
+# core: 8.x
+dependencies:
+  - drupal:node
+  - drupal:tvmachine_blocks
+
+# Information added by Drupal.org packaging script on 2017-03-15
+version: '8.x-1.x-dev'

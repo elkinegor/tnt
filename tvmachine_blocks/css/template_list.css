@@ -1,0 +1,85 @@
+body {
+	font-family: arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	}
+
+.loading,
+.loading_2 {
+	background: url(../images/loading.gif) center no-repeat fixed #FFF;
+	height: 32px;
+	width: 100%;
+	}
+
+.tv-button {
+	background-color: #e9e9e9;
+	color: #111111 !important;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 25px;
+	line-height: 28px;
+	margin: 0 6px 2px 0;
+	padding: 0;
+	text-decoration: none !important;
+	text-indent: 10px;
+	width: 140px;
+	}
+
+.button-yesterday {
+	width: 50px;
+	}
+
+.button-today {
+	width: 140px;
+	}
+
+.button-tomorrow {
+	width: 100px;
+	}
+
+.button-yesterday:hover, .button-yesterday-active,
+.button-today:hover, .button-today-active,
+.button-tomorrow:hover, .button-tomorrow-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	}
+
+.button-yesterday:hover, .button-yesterday-active {
+	width: 50px;
+	}
+
+.button-today:hover, .button-today-active {
+	width: 140px;
+	}
+
+.button-tomorrow:hover, .button-tomorrow-active {
+	width: 100px;
+	}
+
+.tvcopy {
+	float: left;
+	border-style: none;
+	font-family: verdana, arial, sans-serif;
+	font-size: 10px;
+	line-height: 20px;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	white-space: normal;
+	}
+
+.tvcopy a:active,
+.tvcopy a:hover,
+.tvcopy a:link,
+.tvcopy a:visited {
+	text-decoration: none;
+	}
+
+.hidden {
+	visibility: hidden;
+	}

@@ -1,0 +1,27 @@
+div.form-item-day,
+div.form-item-tday {
+	float:left;
+}
+
+div.form-item-hour,
+div.form-item-thour {
+	float:left;
+	margin-left:15px;
+}
+
+div.form-item-tmonth {
+	clear:both;
+
+}
+
+input.form-submit {
+	display:block;
+	float:left;
+	margin-bottom:10px;
+}
+
+input.warm_day_1,
+input.delete_cache_tags {
+	clear:both;
+	margin-left:0px;
+}

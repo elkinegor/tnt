@@ -1,0 +1,163 @@
+<!-- views-view-table-view_program_detail-page_2.html -->
+<div id="detail-program-content" class="details-television">
+
+	{% if result_arr['time']['current']['description'] or result_arr['time']['current']['channel_url_replay'] %}
+        <div class="ad-details-television">
+    	<!-- TV es detail square 300x250 -->
+        </div>
+	{% endif %}
+
+	{% if result_arr['time']['current']['image'] %}
+    <div class="image-details-television">
+      <img src="{{ result_arr['time']['current']['image'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" />
+     </div>
+	{% endif %}
+
+	{% if result_arr['time']['current']['field_program_image_upload'] %}
+    <div class="image-details-television">
+    	<img src="{{ result_arr['time']['current']['field_program_image_upload'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" height="{{ result_arr['time']['current']['field_program_image_upload_height'] }}" width="{{ result_arr['time']['current']['field_program_image_upload_width'] }}">
+    </div>
+	{% endif %}
+
+  <span style="display: block;">
+  	<span class="logo-details-television"><a href="{{ result_arr['node_path'] }}" target="_blank"><img class="imagefield imagefield-field_channels_logo" width="30" height="25" alt="" src="{{ result_arr['time']['current']['logo'] }}"></a></span>
+	<span class="date-details-television">{{ result_arr['time_string'] }}</span>
+  	{% if result_arr['time']['current']['category'] %}
+  		<span class="category-details-television"> - <span class="{{ result_arr['text_bg_category'] }}">{{ result_arr['time']['current']['category'] }}</span></span>
+	{% endif %}
+	</span>
+
+	<!-- google_ad_section_start -->  
+  <h1 style="margin: 5px 0 5px 0;">
+    <div class="title-details-television">
+    	{{ result_arr['time']['current']['title'] }}
+  	</div>
+  </h1>
+
+  {% if result_arr['time']['current']['subtitle'] %}
+  	<div class="element-details-television">
+	    <strong>{{ result_arr['time']['current']['subtitle']|raw }}</strong>
+	  </div>
+  {% endif %}
+
+  {% if result_arr['time']['current']['tv_area_1'] %}
+  	<div class="element-details-television area-1-details-television">
+      {{ result_arr['time']['current']['tv_area_1']|raw }}
+    </div>
+    <div style="color: #ffffff; margin-top: 8px;">{{ result_arr['time']['current']['nid']}}
+    </div>
+  {% endif %}
+
+  {% if not result_arr['time']['current']['description'] %}
+      	<span style="color:#999999; font-size:11px">
+          No hay informaci&oacute;n adicional disponible para este programa.<br />
+          Puedes visionar los v&iacute;deos disponibles en Google o bien consultar directamenete la Web de {{ result_arr['time']['current']['channel_description']|striptags }}
+        <br />
+        {% if result_arr['time']['current']['channel_url_replay'] %}
+        	Ese canal ofrece televisi&oacute;n a la carta para volver a ver todos los programas TV, series y documentales diponibles... ya emitidos en {{ result_arr['time']['current']['channel_description']|striptags }}.<br />
+        {% endif %}
+        {% if result_arr['time']['current']['channel_url_live'] %}
+        	{{ result_arr['time']['current']['channel_url_live'] }} est&aacute; tambi&eacute;n disponible en streaming. (Por razones de derechos de autor y difusi&oacute;n, algunos programas, tales como pel&iacute;culas y series am&eacute;ricanas ... no est&aacute;n disponibles online)
+        {% endif %}
+        </span><br />
+  {% endif %}
+
+  {% if result_arr['time']['current']['description'] %}
+  	<div class="element-details-television">{{ result_arr['time']['current']['description']|raw }}</div>
+  	<br />
+  {% endif %}
+
+  {% if result_arr['time']['current']['trailer_url'] %}
+	  <script type="text/javascript"> 
+			function OpenWindowTrailer(URL){
+				window.open(URL,'','scrollbars=yes,menubar=no,height=555,width=1000,resizable=yes,toolbar=yes,location=yes,status=yes');
+			};
+	  </script>
+	  <br />
+	  <div class="link-details-television link-details-trailer">
+	  	<a href="javascript:OpenWindowTrailer('{{result_arr['time']['current']['trailer_url']}}');">&#9658; Ver Trailer</a> 
+	  </div>
+	  <br />
+  {% endif %}
+
+  {% if result_arr['time']['current']['tv_area_2'] %}
+  	<span class="element-details-television area-2-details-television">
+	  	{{ result_arr['time']['current']['tv_area_2']|raw }}
+	 </span>
+  {% endif %}
+
+  {% if result_arr['time']['current']['tv_area_3'] %}
+  	<span class="element-details-television area-3-details-television">
+	  	{{ result_arr['time']['current']['tv_area_3']|raw }}
+	  </span>
+  {% endif %}
+
+  <!-- google_ad_section_end -->
+
+  <br style="clear:both;" />
+  <div class="movile-display-none">
+
+  	<script type="text/javascript"> 
+			function OpenWindow (URL){window.open(URL,'','scrollbars=yes,menubar=no,height=650,width=1000,resizable=yes,toolbar=yes,location=yes,status=yes')};
+		</script>
+
+	  {% if result_arr['time']['current']['urlfilmaffinity'] is not null %}
+	  <div class="link-details-television link-details-filmaffinity">
+		<a href='javascript:OpenWindow("{{result_arr['time']['current']['urlfilmaffinity']}}")'>&#9658; FilmAffinity</a> 
+	  </div>
+	  {% endif %}
+
+	  <div class="link-details-television link-details-info">
+	  	<a href='javascript:OpenWindow("{{result_arr['time']['current']['urlinfo']}}")'>&#9658; Info en Google</a> 
+	  </div>
+	  <div class="link-details-television link-details-video">
+	  	<a href='javascript:OpenWindow("{{result_arr['time']['current']['urlvideo']}}")'>&#9658; V&iacute;deos de Google</a> 
+	  </div>
+
+	  {% if result_arr['time']['current']['channel_url'] %}
+	  	<div class="link-details-television link-details-web">
+	      <a href="javascript:OpenWindow('{{ result_arr['time']['current']['channel_url'] }} ')">&#9658; Web {{ result_arr['time']['current']['channel_description']|striptags }}</a> 
+	    </div>
+	  {% endif %}
+
+	  {% if result_arr['time']['current']['channel_url_live'] %}
+	  	<div class="link-details-television link-details-live">
+	      <a href="javascript:OpenWindow('{{result_arr['time']['current']['channel_url_live']}}')">&#9658; En directo</a>
+	    </div>
+	  {% endif %}
+
+	  {% if result_arr['time']['current']['channel_url_replay'] %}
+	  	<div class="link-details-television link-details-replay">
+	      <a href="javascript:OpenWindow('{{result_arr['time']['current']['channel_url_replay']}}')">&#9658; A la carta</a>
+	    </div>
+	  {% endif %}
+
+	  	<a href="javascript:openwindowtwitter('https://www.tvguia.es')"><div class="icon_twitter" title="Twitter"></div></a>
+
+		<script type="text/javascript">
+		var clean_title = "{{current['title']}}".replace("&#039;", "\'");
+		var msg = '{{current['category']}} > '+clean_title+'%0A{{ translated_day }} {{ current['day'] }} de {{ translated_month }}, {{ current['hour']}}:{{ current['minute'] }} en {{ current['channel_description']|striptags}}';  
+		var url = encodeURIComponent('https://www.tvguia.es'); 
+		var link = 'https://twitter.com/intent/tweet?text=' + msg + '&url=' + url +'&via=TVguia_es'; 
+		function openwindowtwitter(URL){window.open(link,'twitter','scrollbars=yes,menubar=no,height=420,width=500,resizable=yes,toolbar=no,location=yes,status=yes')};
+		</script>
+
+		<br style="clear:both;" />
+	</div>
+</div>
+
+<div id="detect-ab"><div class="adBanner">&nbsp;</div></div>
+
+<br style="clear:both;" />
+
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js'></script>
+<script>
+//https://html-online.com/articles/detect-adblock-javascript/
+$(document).ready(function(){
+    if($("#detect-ab").height() > 0) {
+        //alert('No AdBlock');
+    } else {
+    document.getElementById('detail-program-content').innerHTML="<div class='details-television' style='width:100%; height:100%'><img src='/themes/tv_desktop/images/adblockers.png' 'width='360' border='0' height='250' style='margin: 20px 0px 0px 60px;'></div>";
+    }
+});
+</script>

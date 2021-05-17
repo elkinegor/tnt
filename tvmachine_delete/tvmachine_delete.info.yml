@@ -1,0 +1,8 @@
+name: TVMachine delete template files
+type: module
+description: This module to delete template files
+core_version_requirement: ^8.8 || ^9
+# core: 8.x
+package: tvmachine
+dependencies:
+#  - drupal:dropzonejs

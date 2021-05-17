@@ -1,0 +1,8 @@
+<?php
+
+function tvmachine_poll_cron_cron() {
+
+  $query = \Drupal::database()->delete('poll_vote');
+  $query->execute();
+  
+}

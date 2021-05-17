@@ -1,0 +1,256 @@
+body {
+	font-family: arial,sans-serif;
+	font-size: 13px;
+	margin: 0;
+	}
+
+p {
+	margin: 0;
+	}
+
+img {
+	border: none;
+	}
+
+.program-details-ajax {
+	border-color: #cccccc;
+	border-style: none solid solid solid;
+	border-width: 0 1px 1px 1px;
+	}
+
+.details-television {
+	float: left;
+	width: 98%;
+	padding: 10px 0 5px 5px;
+	max-width: 779px;
+	max-height: 830px;
+	}
+
+.image-details-television {
+	float: left;
+	margin: 0 10px 5px 0;
+	}
+
+.logo-details-television {
+	display: inline;
+	height: 25px;
+	width: 30px;
+	}
+
+.date-details-television {
+	display: inline;
+	height: 25px;
+	text-align: left;
+	padding: 0 0 0 6px;
+	vertical-align: 40%;
+	}
+
+.category-details-television {
+	display: inline;
+	height: 25px;
+	text-align: left;
+	padding: 0 0 0 6px;
+	vertical-align: 40%;
+	}
+
+.text_bg_peliculas {
+	background-color: #fcf2a1;
+	color: #ff9a00;
+	font-size: 12px;
+	padding: 0 4px 0 4px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_series {
+	background-color: #f4ecc5;
+	color: #7a4b00;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_deportes {
+	background-color: #f3fca8;
+	color: #718600;
+	font-size: 12px;
+	padding: 0 4px 0 4px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_infantil {
+	background-color: #e2fbfd;
+	color: #00d1ae;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_entretenimiento {
+	background-color: #ebdafe;
+	color: #7222fd;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_documental {
+	background-color: #e2e8ff;
+	color: #0066fe;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_noticias {
+	background-color: #fce1de;
+	color: #e91200;
+	font-size: 12px;
+	padding: 0 3px 0 3px;
+	margin: 0 0 0 5px;
+	}
+	
+.text_bg_concursos {
+	background-color: #ffffae;
+	color: #d7aa00;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_corazon {
+	background-color: #fed7f4;
+	color: #ff4ab4;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_reality {
+	background-color: #e9e9e9;
+	color: #505050;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.text_bg_prog{
+	background-color: #e9e9e9;
+	color: #505050;
+	font-size: 12px;
+	padding: 0 2px 0 2px;
+	margin: 0 0 0 5px;
+	}
+
+.right-details-television h1 {
+	display: block;
+	margin: 10px 0 15px 0;
+	}
+
+
+.title-details-television {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	}
+
+.banner-details-television {
+	display:block;
+	margin: 0 0 0 0; 
+	}
+
+.element-details-television {
+	margin: 0;
+	line-height:1.5;
+	}
+
+.source-details-television {
+	margin: 0 0 0 10px;
+	float: right;
+	text-align: right;
+	font-size: 11px;
+	}
+
+.source-details-television a{
+	text-decoration: none;
+	color: #111111;
+	}
+
+.area-1-details-television {
+	}
+
+.area-2-details-television {
+	font-size: 11px;
+	font-style:normal;
+	display:block;
+	margin-top: 15px;
+	display:block;
+	}
+
+.area-3-details-television {
+	}
+
+.link-details-television {
+	float: left;
+	height: 20px;
+    line-height: 1.5;
+	margin: 5px;
+	padding: 0 8px;
+	}
+
+.link-details-television a{
+	text-decoration: none;
+	outline: none;
+	font-weight: bold;
+	color:#ffffff;
+	}
+
+.link-details-trailer {
+	background-color: #111;
+	margin: 0 0 0 5px!important;
+	}
+
+.link-details-filmaffinity {
+	background-color: #455072;
+	}
+
+.link-details-info {
+	background-color: #ff6e00;
+	}
+
+.link-details-video {
+	background-color: #ff6e00;
+	}
+
+.link-details-live {
+	background-color: #9b0000;
+	}
+
+.link-details-replay {
+	background-color: #9b0000;
+	}
+
+.link-details-web{
+	background-color: #9b0000;
+	}
+
+@media (max-width: 780px) {
+.movile-display-none { 
+    display:none!important; 
+	}
+.movile-visibility-hidden {
+	visibility:hidden!important;
+	}
+.image-details-television {
+	margin: 15px 10px 5px 0;
+	}
+}
+
+.icon_twitter { 
+	background: url('../images/detail-twitter.png') no-repeat;
+	height:20px;
+	float: left;
+	margin: 5px 0 5px 5px;
+	width:32px;
+	}

@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @file
+ * Module file for tvmachine_blocks.
+ */ 
+
+/**
+ * Implements hook_theme().
+ */
+
+function tvmachine_blocks_theme() {
+  return array(
+    'tvmachine_temp_5' => array(
+      'variables' => array(
+        'js_vars' => array(),
+        'args' => array(),
+        'english_month' => array(),
+        'translated_month' => array(),
+        'english_day' => array(),
+        'translated_day' => array(),
+        'body' => '',
+        'day_vars' => array(),
+        'is_admin' => 0,
+        'show_title' => 1,
+      ),
+      'template' => 'tvmachine_temp_5',
+    ),
+    'tvmachine_temp_6' => array(
+      'variables' => array(
+        'js_vars' => array(),
+        'english_month' => array(),
+        'translated_month' => array(),
+        'english_day' => array(),
+        'translated_day' => array(),
+        'body' => '',
+        'day_vars' => array(),
+        'is_admin' => 0,
+        'show_title' => 1,
+      ),
+      'template' => 'tvmachine_temp_6',
+    ),
+    'tvmachine_temp_7' => array(
+      'variables' => array(
+        'js_vars' => array(),
+        'english_month' => array(),
+        'translated_month' => array(),
+        'english_day' => array(),
+        'translated_day' => array(),
+        'body' => '',
+        'day_vars' => array(),
+        'is_admin' => 0,
+        'show_title' => 1,
+      ),
+      'template' => 'tvmachine_temp_7',
+    ),
+  );
+}
+
+function tvmachine_blocks_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'poll_view_form_1') {
+    unset($form['actions']['result']);
+  }
+}
+
+// In order to import config use "modules/custom/tvmachine_blocks/config/optional/ultimate_cron.job.pool_ip_fix.yml" with devel config
+// add random number to IP in poll_vote to allow user to vote on same cloudflare's IP
+function _pool_ip_fix_cron() {
+
+  // Getting channels data
+  $query = \Drupal::database()->select('poll_vote', 'p');
+  $query->fields('p', array('hostname', 'timestamp'));
+
+  // Check last hour votes only
+  /*$timestamp = time() - (60 * 60);
+  $query->condition('p.timestamp', $timestamp, '<');*/
+  $query->orderBy('p.timestamp', 'DESC');
+  $query->range(0, 10);
+  $result = $query->execute()->fetchAll();
+
+  if ($result) {
+
+    foreach ($result  as $key => $value) {
+
+      $hostname = $value->hostname;
+
+      if (strlen($hostname) < 16) {
+
+        $query = \Drupal::database()->update('poll_vote');
+        $query->fields([
+          'hostname' => $hostname.rand(11111111, 99999999),
+        ]);
+        $query->condition('hostname', $hostname);
+        $query->execute();
+
+      }
+    }
+  } 
+}

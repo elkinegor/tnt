@@ -1,0 +1,7 @@
+tvmachine_visibility:
+  version: 1.x
+  js:
+    script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

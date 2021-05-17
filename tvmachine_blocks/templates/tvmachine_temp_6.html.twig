@@ -1,0 +1,203 @@
+{#
+/**
+ * @file
+ * Profile ws custom block. Ported from tvmachine_block_theme.tpl.php
+ * Was ported from the tvmachine/tvmachine_block_theme.tpl.php
+ * Preprocess code in the TVMachineBlock1.php and in the TVMachineBlocksHelper.php 
+ */
+#}
+
+{{ attach_library('tvmachine_blocks/temp_6') }}
+{{ attach_library('lazy/lazysizes') }}
+
+<div class="tv-program-listing-block temp_6">
+	<div style="width: 816px; padding-left: 5px;">
+
+		<a id="button-before-yesterday" class="tv-button button-yesterday" href="javascript:void(0);" title="Anteayer" rel="nofollow" onclick="callback({{ js_vars['temp'] }}, {{ day_vars['day02_n'] }}, {{ day_vars['day02_j'] }}, this);">{{ day_vars['day02_l_replace'] }}</a>
+
+		<a id="button-yesterday" class="tv-button button-yesterday" href="javascript:void(0);" title="Ayer" rel="nofollow" onclick="callback({{ js_vars['temp'] }}, {{ day_vars['day01_n'] }}, {{ day_vars['day01_j'] }}, this);">{{ day_vars['day01_l_replace'] }}</a>
+
+		<a id="button-today" class="tv-button button-today-active" href="javascript:void(0);" title="Hoy" rel="nofollow" onclick="callback({{ js_vars['temp'] }}, {{ day_vars['day1_n'] }}, {{ day_vars['day1_j'] }}, this);">{{ day_vars['day1_l_replace'] }}</a>
+
+		<a id="button-tomorrow" class="tv-button button-tomorrow" href="javascript:void(0);" title="Ma&ntilde;ana" rel="nofollow" onclick="callback({{ js_vars['temp'] }}, {{ day_vars['day2_n'] }}, {{ day_vars['day2_j'] }}, this);" >{{ day_vars['day2_l_replace'] }}</a>
+{% if logged_in %}
+		<a id="button-after-tomorrow" class="tv-button button-tomorrow" href="javascript:void(0);" title="Pasado ma&ntilde;ana" rel="nofollow" onclick="callback({{ js_vars['temp'] }}, {{ day_vars['day3_n'] }}, {{ day_vars['day3_j'] }}, this);" >{{ day_vars['day3_l_replace'] }}</a>
+{% endif %}
+		<br style="clear:both;" />
+	</div>
+
+	<div style="width: 816px; padding-left: 5px;">
+	  <a id="button-00-03" onclick="callback({{ js_vars['temp'] }}, 0, this);" class="tv-button button-time" href="javascript:void(0);" title="0h - 3h" rel="nofollow">00-03</a>
+	  <a id="button-03-06" onclick="callback({{ js_vars['temp'] }}, 3, this);" class="tv-button button-time" href="javascript:void(0);" title="3h - 6h" rel="nofollow">03-06</a>
+	  <a id="button-06-09" onclick="callback({{ js_vars['temp'] }}, 6, this);" class="tv-button button-time" href="javascript:void(0);" title="6h - 9h" rel="nofollow">06-09</a>
+	  <a id="button-09-12" onclick="callback({{ js_vars['temp'] }}, 9, this);" class="tv-button button-time" href="javascript:void(0);" title="9h - 12h" rel="nofollow">09-12</a>
+	  <a id="button-12-15" onclick="callback({{ js_vars['temp'] }}, 12, this);" class="tv-button button-time" href="javascript:void(0);" title="12h - 15h" rel="nofollow">12-15</a>
+	  <a id="button-15-18" onclick="callback({{ js_vars['temp'] }}, 15, this);" class="tv-button button-time" href="javascript:void(0);" title="15h - 18h" rel="nofollow">15-18</a>
+	  <a id="button-18-21" onclick="callback({{ js_vars['temp'] }}, 18, this);" class="tv-button button-time" href="javascript:void(0);" title="18h - 21h" rel="nofollow">18-21</a>
+	  <a id="button-21-24" onclick="callback({{ js_vars['temp'] }}, 21, this);"  class="tv-button button-time-active" href="javascript:void(0);" title="21h - 24h" rel="nofollow">21-24</a>
+	<br style="clear:both;" />
+	</div>
+
+	<div style="width: 827px;">
+	  <div class="tvtime"  style="width: 70px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 39px;"><span class="tvtime-hour">21:00</span></div>
+	  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour">21:30</span></div>
+	  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour">22:00</span></div>
+	  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour">22:30</span></div>
+	  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour">23:00</span></div>
+	  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour">23:30</span></div>
+	  <div class="tvtime"  style="width: 79px;">&nbsp;</div>
+	  <div class="tvtime"  style="width: 21px;"><span class="tvtime-hour">24:00</span></div>
+	  <br style="clear:both;" />
+	</div>
+
+	<div id="ajax-here" class="program-grid" style="width:809px; background-color:#ffffff; margin-bottom:30px;">{{ body | raw }}</div>
+
+</div> 
+
+<div class="tv-program-listing-right">
+	<div style="width: 45px; height: 16px; margin: 20px 0px -10px 0px; padding:0 0 0 8px; font-size: 11px; font-weight: bold; color: #ffffff; background-color:red; border-radius: 5px;">Filtros</div>
+	<a href="/page/selection-chaines"><div style="width: 145px; margin: 12px 0 4px 4px; font-size: 14px; font-weight: bold; line-height: 16px; color: #111111;">► Selecciona tus canales</div></a>
+	<div style="width: 100px; margin: 12px 0 4px 4px; font-size: 14px; font-weight: bold;">Programas</div>
+    
+	<div class="tvcat" id="peliculas" style="width: 130px;"><div class="cat_peliculas cat_peliculas_highlight"></div>Pel&iacute;culas</div>
+	<div class="tvcat" id="series" style="width: 130px;"><div class="cat_series cat_series_highlight"></div>Series</div>
+	<div class="tvcat" id="deportes" style="width: 130px;"><div class="cat_deportes cat_deportes_highlight"></div>Deportes</div>
+	<div class="tvcat" id="infantil" style="width: 130px;"><div class="cat_infantil cat_infantil_highlight"></div>Infantil</div>
+	<div class="tvcat" id="entretenimiento" style="width: 130px;"><div class="cat_entretenimiento cat_entretenimiento_highlight"></div>Entretenimiento</div>
+	<div class="tvcat" id="documental" style="width: 130px;"><div class="cat_documental cat_documental_highlight"></div>Mag/documental</div>
+	<div class="tvcat" id="noticias" style="width: 130px;"><div class="cat_noticias"></div>Noticias</div>
+	<div class="tvcat" id="concursos" style="width: 130px;"><div class="cat_concursos"></div>Concursos</div>
+	<div class="tvcat" id="corazon" style="width: 130px; display:none;"><div class="cat_corazon"></div>Coraz&oacute;n</div>
+	<div class="tvcat" id="reality" style="width: 130px; display:none;"><div class="cat_reality"></div>Reality</div>
+	<br style="clear:both;" />
+	<font color="white">{{ day_vars['dateYmdHis'] }}</font>
+
+		{% if is_admin == 1 %}
+
+		<div id="stickyTopDiv" class="tv-program-listing-ad-right" style="z-index: 999;">
+			<img src="/themes/tv_desktop/images/adsense160x600.gif" alt=""/>
+
+			</div>
+
+		{% else %}
+
+			{% if "now"|date("d", "Europe/Paris") == '21' or "now"|date("d", "Europe/Paris") ==  '22' or "now"|date("d", "Europe/Paris") ==  '23' or "now"|date("d", "Europe/Paris") ==  '24' or "now"|date("d", "Europe/Paris") ==  '25' %}
+
+			    <div class="tv-program-listing-ad-right">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Bloque de 160 x 600 pixeles -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-6412530744130865"
+                     data-ad-slot="8012639600"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+				</div>
+
+			{% elseif "now"|date("d", "Europe/Paris") == '26' or "now"|date("d", "Europe/Paris") ==  '27' %}
+
+		        <div class="tv-program-listing-ad-right">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Onedata 160x600 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-8975649173389036"
+                     data-ad-slot="9965492234"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+				</div>
+
+			{% else %}
+
+			  <div id="stickyTopDiv" class="tv-program-listing-ad-right" style="z-index: 999;">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- TV es home 160x600 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:160px;height:600px"
+                     data-ad-client="ca-pub-8975649173389036"
+                     data-ad-slot="3494368043"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+				</div>
+
+			{% endif %}
+		{% endif %}
+</div> <!-- /tv-program-listing-right -->
+
+<br style="clear:both;" />
+
+<script>
+
+	var base_url = '{{ js_vars['base_url'] }}'; 
+	var base_stylesheet_url = '{{ js_vars['base_url'] }}/{{ js_vars['tvmachine_path'] }}/css';
+	var path_view = '/program/ajax';
+	var path_tvmachine_img = '{{ js_vars['tvmachine_images_path'] }}';
+
+	window.tvmachine  = {
+	 template:"{{ js_vars['temp'] }}",
+	 sets:"{{ js_vars['set'] }}",
+	 month:"{{ js_vars['month'] }}",
+	 day:"{{ js_vars['day'] }}",
+	 hour:"{{ js_vars['hour'] }}",
+	 minute:"{{ js_vars['minute'] }}",
+	 color1:'FFFFFF',
+	 color2:'FFFFFF',
+	 color3:'313131',
+	 color4:'111111',
+	 base_url:"{{ js_vars['base_url'] }}",
+	 base_stylesheet_url:base_stylesheet_url,
+	 path_view:path_view,
+	 path_tvmachine_img:path_tvmachine_img,
+	 day1_j:"{{ day_vars['day1_j'] }}",
+	 day2_j:"{{ day_vars['day2_j'] }}",
+	 day3_j:"{{ day_vars['day3_j'] }}",
+	 day01_j:"{{ day_vars['day01_j'] }}",
+	 day02_j:"{{ day_vars['day02_j'] }}",
+	};
+	/* buttonsday_onload.js */
+</script>
+
+<!-- Sticky Top Div-->
+<script type='text/javascript'>
+if (navigator.userAgent.indexOf('iPad') != -1)
+{
+// Check if useragent is iPad, if not, define function stickydiv
+}else{
+	var startStickyTopDiv=-1;
+    window.onscroll=function(){
+        var stickydiv = document.getElementById('stickyTopDiv');
+        if(startStickyTopDiv<0)startStickyTopDiv=findPosY(stickydiv);
+
+        if(pageYOffset>startStickyTopDiv){
+            stickydiv.style.position='fixed';
+            stickydiv.style.top=0;
+        }else{
+            stickydiv.style.position='relative';
+        }
+    }
+};
+
+    function findPosY(obj) {
+        var curtop = 0;
+        if (typeof (obj.offsetParent) != 'undefined' && obj.offsetParent) {
+            while (obj.offsetParent) {
+                curtop += obj.offsetTop;
+                obj = obj.offsetParent;
+            }
+            curtop += obj.offsetTop;
+        }
+        else if (obj.y)
+            curtop += obj.y;
+        return curtop;
+    }
+</script>
+

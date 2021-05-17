@@ -1,0 +1,168 @@
+<!-- views-view-table-view_program_detail-page_4.html -->
+
+<div class="details-television">
+	<div class="info-details-television 4">
+		<div class="logo-details-television"><a href="{{ result_arr['node_path'] }}" target="_blank"><img class="imagefield imagefield-field_channels_logo" width="48" height="40" alt="" src="{{ result_arr['time']['current']['logo'] }}"></a></div><div class="date-details-television">{{ result_arr['time_string'] }}</div>
+  	{% if result_arr['time']['current']['category'] %}
+		<div class="category-details-television {{ result_arr['text_bg_category'] }}">{{ result_arr['time']['current']['category'] }}</div>
+	{% endif %}
+	</div>
+	<br style="clear:both;" />
+ 
+  <h1>
+  	<div class="title-details-television">
+		{{ result_arr['time']['current']['title'] }}
+	</div>
+  </h1>
+
+  {% if result_arr['time']['current']['subtitle'] %}
+  	<div class="element-details-television">
+		<strong>{{ result_arr['time']['current']['subtitle']|raw }}</strong>
+	</div>
+  {% endif %}
+
+  {% if result_arr['time']['current']['tv_area_1'] %}
+  	<div class="element-details-television area-1-details-television">
+      {{ result_arr['time']['current']['tv_area_1']|raw }}
+    </div>
+  {% endif %}
+
+  <br />
+
+  {% if not result_arr['time']['current']['description'] %}
+
+  	<div style="color:#999999; font-size:12px; padding: 0 4px;">
+    	No hay informaci&oacute;n adicional disponible para este programa.
+    	<br />
+    </div><br />
+
+  {% endif %}
+
+  {% if result_arr['time']['current']['description'] %}
+
+  	<div class="element-details-television">{{ result_arr['time']['current']['description']|raw }}</div>
+  	<br style="clear:both;" />
+
+  {% endif %}
+
+	{% if result_arr['time']['current']['image'] %}
+    <div class="image-details-television">
+			<img src="{{ result_arr['time']['current']['image'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" />
+		</div>
+    <br style="clear:both;" />
+	{% endif %}
+
+	{% if result_arr['time']['current']['field_program_image_upload'] %}
+    <div class="image-details-television">
+			<img src="{{ result_arr['time']['current']['field_program_image_upload'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" height="{{ result_arr['time']['current']['field_program_image_upload_height'] }}" width="{{ result_arr['time']['current']['field_program_image_upload_width'] }}">
+		</div>
+    <br style="clear:both;" />
+	{% endif %}
+
+	{% if result_arr['time']['current']['tv_area_2'] %}
+  	<div class="element-details-television area-2-details-television">
+	  	{{ result_arr['time']['current']['tv_area_2']|raw }}
+	  </div>
+
+		<br style="clear:both;" />
+
+  {% endif %}
+
+  {% if result_arr['time']['current']['tv_area_3'] %}
+  	<div class="element-details-television area-3-details-television">
+	  	{{ result_arr['time']['current']['tv_area_3']|raw }}
+	  </div>
+  {% endif %}
+
+	  <div class="link-details-television link-details-info">
+			<a href="{{result_arr['time']['current']['urlinfo']}}">&#9658; Info en Google</a> 
+		</div>
+		<div class="link-details-television link-details-video">
+			<a href="{{result_arr['time']['current']['urlvideo']}}">&#9658; V&iacute;deos de Google</a> 
+		</div>
+
+	  {% if result_arr['time']['current']['urlfilmaffinity'] is not null %}
+			<div class="link-details-television link-details-filmaffinity">
+				<a href="{{result_arr['time']['current']['urlfilmaffinity']}}">&#9658; FilmAffinity</a> 
+			</div>
+	  {% endif %}
+
+		{% if result_arr['time']['current']['channel_url'] %}
+	  	<div class="link-details-television link-details-web">
+	      <a href="{{ result_arr['time']['current']['channel_url'] }}">&#9658; Web {{ result_arr['time']['current']['channel_description']|striptags }}</a>
+	    </div>
+	  {% endif %}
+
+      <br style="clear:both;" />
+	  <br style="clear:both;" />
+
+</div> <!-- div details-television -->
+
+<br style="clear:both;" />
+
+<div class="share">Compartir:</div>
+<br style="clear:both;" />
+
+<script type="text/javascript" async="async">
+    var clean_title = "{{current['title']}}".replace("&#039;", "\'");
+	var msg = '{{current['category']}} > '+clean_title+'%0A{{ translated_day }} {{ current['day'] }} de {{ translated_month }}, {{ current['hour']}}:{{ current['minute'] }} en {{ current['channel_description']|striptags}}';  
+	var url = encodeURIComponent('https://www.tvguia.es'); 
+	var link = 'https://twitter.com/intent/tweet?text=' + msg + '&url=' + url +'&via=TVguia_es'; 
+	function openwindowtwitter(URL){window.open(link,'twitter','scrollbars=yes,menubar=no,height=420,width=500,resizable=yes,toolbar=no,location=yes,status=yes')};
+</script>
+
+<a href="javascript:openwindowtwitter('https://www.tvguia.es')">
+<div class="twitter">
+	<div class="icon_twitter" title="Twitter"></div>Twitter</div>
+</a>
+
+<br style="clear:both;" />
+
+<a href="/mobile/app/programacion-tv.php?tmonth={{ month_back_url }}&tday={{ day_back_url }}&thour={{ hour_back_url }}" title="Programación TV">
+<div class="back-to-program">Volver a la guía TV</div>
+</a>
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+
+<!-- start swipe buttons -->
+{% if result_arr['time']['previou'] %}
+	<a href="/television/tv-serie-cine4/6/1/{{ prev_month_url }}/{{ prev_day_url }}/{{ result_arr['time']['previou']['hour'] }}/{{ result_arr['time']['previou']['minute'] }}/{{ arg['channel'] }}" class="swipe-previous swipe-button"><span class="swipe-tag"><span class="swipe-tag-title">Ant.</span><span class="swipe-tag-subtitle">&laquo;</span></span></a> 
+{% endif %}
+{% if result_arr['time']['next'] %}
+	<a href="/television/tv-serie-cine4/6/1/{{ next_month_url }}/{{ next_day_url }}/{{ result_arr['time']['next']['hour'] }}/{{ result_arr['time']['next']['minute'] }}/{{ arg['channel'] }}" class="swipe-next swipe-button"><span class="swipe-tag"><span class="swipe-tag-title">Sig.</span><span class="swipe-tag-subtitle">&raquo;</span></span></a>
+{% endif %}
+
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js'></script>
+
+<script type='text/javascript' async='async'>
+var scrollmove = 200;
+var hasScrollbar = document.documentElement.offsetHeight > window.innerHeight+200;
+
+if(hasScrollbar == false){$('.swipe-button').addClass('swipe-active');}
+
+jQuery(document).ready(function($)
+	{"use strict";
+	$(window).scroll(function()
+		{
+			if (($(this).scrollTop()>scrollmove) || (hasScrollbar == false)) {$('.swipe-button').addClass('swipe-active');}
+			else {$('.swipe-button').removeClass('swipe-active');}
+		});
+	});
+
+window.onresize = function(event) 
+	{
+										  
+	var scrollmove = 200;
+	$(window).scroll(function()
+		{
+			if ($(this).scrollTop()>scrollmove) {$('.swipe-button').addClass('swipe-active');}
+			else {$('.swipe-button').removeClass('swipe-active');}
+		});
+	};
+</script>
+
+<!-- end swipe buttons -->

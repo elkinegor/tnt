@@ -1,0 +1,312 @@
+.tv-program-listing-block {
+	float: left;
+	margin: 5px 0 0 0;	
+	padding-left: 2px;
+	overflow: hidden;
+	width: 821px;
+	}
+
+.tv-program-listing-ad-up {
+	margin: 0 0 2px 40px;
+	}
+
+.tv-program-listing-ad-right {
+	margin: 20px 0 0 0;
+	width:160px;
+	height:600px;
+	}
+
+.tv-program-listing-right {
+	float: left;
+	margin: 70px 0 0 6px;
+	padding: 0;
+	width: 160px;
+	}
+
+.tv-program-listing-right h1 {
+	font-size: 13px;
+	margin: 0 0 0 0;
+	}
+
+.loading {
+	background: url("../images/loading.gif") no-repeat fixed center;
+	height:32px;
+	width:100%;
+	position:relative;
+	}
+
+.loading_2{
+	background: url("../images/loading.gif") no-repeat center;
+	}
+
+.tv-button {
+	background-color: #dfdfdf;
+	color: #111111 !important;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 22px;
+	line-height: 22px;
+	margin: 4px 6px 0 0;
+	padding: 0;
+	text-decoration: none !important;
+	text-indent: 10px;
+	width: 140px;
+	}
+
+.button-yesterday {
+	width: 50px;
+	}
+
+.button-today {
+	width: 140px;
+	}
+
+.button-tomorrow {
+	width: 100px;
+	}
+
+.button-yesterday:hover, .button-yesterday-active,
+.button-today:hover, .button-today-active,
+.button-tomorrow:hover, .button-tomorrow-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	height: 26px;
+	margin: 0 6px 8px 0;
+	line-height: 30px;
+	}
+
+.button-yesterday:hover, .button-yesterday-active {
+	width: 50px;
+	}
+
+.button-today:hover, .button-today-active {
+	width: 140px;
+	}
+
+.button-tomorrow:hover, .button-tomorrow-active {
+	width: 100px;
+	}
+
+.button-time {
+	height: 20px;
+	line-height: 24px;
+	margin: 4px 8px 0 0;
+	text-indent: 5px;
+	width: 53px
+	}
+
+.button-time:hover, .button-time-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	height: 24px;
+	line-height: 32px;
+	margin: 0 8px 3px 0;
+	}
+
+.button-time-active {
+	outline: none;
+	width:53px;
+	text-indent: 5px;
+	}
+
+.tv-program-listing-block a.button-time {
+	background-color: #dfdfdf;
+	color: #111111 !important;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 22px;
+	line-height: 24px;
+	margin: 4px 8px 0 0;
+	padding: 0;
+	text-decoration: none;
+	text-indent: 5px;
+	width: 53px;
+	}
+
+.tv-program-listing-block a.button-time:hover {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	height: 26px;
+	line-height: 32px;
+	margin: 0 8px 6px 0;
+	}
+
+.tv-program-listing-block a.button-time-active {
+	background-color: #a3d7ff;
+	color: #000000 !important;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 26px;
+	line-height: 32px;
+	margin: 0 8px 6px 0;
+	outline: none;
+	padding: 0;
+	text-decoration: none;
+	text-indent: 5px;
+	width: 53px;
+	}
+
+.tvtime {
+	float: left;
+	height: 19px;
+	border-style: none;
+	background-color: #111111;
+	font-size: 14px;
+	font-family: arial,sans-serif;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle; 
+	margin: 0; 
+	padding: 1px 0 2px 0;
+	overflow:hidden;
+	white-space:nowrap;
+	}
+
+.tvcat {
+	float: left;
+	height: 20px;
+	border-style: none;
+	font-size: 13px;
+	font-family: arial,sans-serif;
+	font-weight: bold;
+	color: #111111;
+	text-align: left;
+	margin: 0;
+	padding: 4px 0 0 5px;
+	overflow:hidden;
+	white-space:normal;
+	cursor:pointer;
+	}
+
+.tvcat a:link { color: #111111; text-decoration: none }
+.tvcat a:visited { color: #111111; text-decoration: none }
+.tvcat a:active {  color: #111111; text-decoration: none }
+.tvcat a:hover {  color: #111111; text-decoration: underline }
+
+.cat_peliculas {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 0;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_peliculas_highlight { background-position: -15px 0;}
+
+.cat_series {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -15px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_series_highlight { background-position: -15px -15px;}
+
+.cat_deportes {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -30px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_deportes_highlight { background-position: -15px -30px;}
+
+.cat_infantil {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -45px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_infantil_highlight { background-position: -15px -45px;}
+
+.cat_entretenimiento {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -60px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_entretenimiento_highlight { background-position: -15px -60px;}
+
+.cat_documental {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -75px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_documental_highlight { background-position: -15px -75px;}
+
+.cat_noticias {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -90px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_noticias_highlight { background-position: -15px -90px;}
+
+.cat_concursos {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -105px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_concursos_highlight { background-position: -15px -105px;}
+
+.cat_corazon {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -120px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_corazon_highlight { background-position: -15px -120px;}
+
+.cat_reality {
+	background: url('../images/bg-cat-box.png') no-repeat;
+	background-position: 0 -135px;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px;
+	}
+.cat_reality_highlight { background-position: -15px -135px;}
+
+div#webmasters {
+	text-align:center; 
+	}
+
+.hidden { visibility: hidden;}
+
+#main-iframe{
+	overflow-y:hidden;
+	overflow-x:hidden;
+	}
+
+#ajax-here {
+	overflow-y:hidden; /* hidden scroll visible */
+	overflow-x:hidden;
+	}

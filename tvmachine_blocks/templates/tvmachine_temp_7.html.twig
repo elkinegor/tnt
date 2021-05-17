@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Profile ws custom block. Ported from tvmachine_block_theme.tpl.php
+ * Was ported from the tvmachine/tvmachine_block_theme.tpl.php
+ * Preprocess code in the TVMachineBlock1.php and in the TVMachineBlocksHelper.php
+ */
+#}
+
+{{ attach_library('tvmachine_blocks/temp_7') }}
+{{ attach_library('lazy/lazysizes') }}
+
+{# <pre>{{ dump() }}</pre> #}
+{% if show_title == 1 %}
+	<div id="poll-title" class="clear">Sondeo TV de la noche:</div>
+{% endif %}
+<div style="overflow-y:hidden; overflow-x:none; width:347px;">{{ body | raw }}</div>

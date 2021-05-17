@@ -1,0 +1,16 @@
+admin:
+  version: 1.x
+  css:
+    theme:
+      css/admin.css: {}
+tvmachine_iframe_setup:
+  version: 1.x
+  js:
+    js/201a.js: {}
+    js/tvmachine_iframe_setup.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+  css:
+    theme:
+      css/tvmachine_iframe_setup.css: {}

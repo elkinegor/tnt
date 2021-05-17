@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+title: 'Pool ip fix'
+id: pool_ip_fix
+module: tvmachine_blocks
+callback: _pool_ip_fix_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '*/5+@ * * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 600
+      max_execution_time: 10
+    launcher:
+      max_threads: 1
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 86400
+    retain: 100

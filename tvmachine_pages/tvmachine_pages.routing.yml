@@ -1,0 +1,99 @@
+tvmachine_pages_program:
+  path: 'webmaster/program/{id}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_iframe_setup'
+    _title_callback: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_iframe_setup_get_title'
+  requirements:
+    _permission: 'access content'
+    
+tvmachine_pages_create_file_cache:
+  path: 'tvmachine_pages_create_file_cache/{temp}/{sets}/{month}/{day}/{hour}/{minute}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_create_file_cache'
+    _title: 'File cache'
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_list_view:
+  path: 'program/ajax/{temp}/{sets}/{month}/{day}/{hour}/{minute}/{color1}/{color2}/{color3}/{color4}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::list_view'
+    _title: 'List view'
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_detail_ajax:
+  path: 'television/tv-serie-cine/{temp}/{sets}/{month}/{day}/{hour}/{minute}/{channel_id}/{detail_template}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_detail_ajax'
+    _title: 'Program detail ajax'
+    detail_template: 1
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_detail_ajax_2:
+  path: 'television/tv-serie-cine2/{temp}/{sets}/{month}/{day}/{hour}/{minute}/{channel_id}/{detail_template}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_detail_ajax'
+    _title: 'Program detail ajax'
+    detail_template: 2
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_detail_ajax_3:
+  path: 'television/tv-serie-cine3/{temp}/{sets}/{month}/{day}/{hour}/{minute}/{channel_id}/{detail_template}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_detail_ajax'
+    _title: 'Program detail ajax'
+    detail_template: 3
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_detail_ajax_4:
+  path: 'television/tv-serie-cine4/{temp}/{sets}/{month}/{day}/{hour}/{minute}/{channel_id}/{detail_template}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_detail_ajax'
+    _title: 'Program detail ajax'
+    detail_template: 4
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_program_television:
+  path: 'program-television/{channel_id}/{tomorrow}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel'
+    _title_callback: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel_get_title'
+    tomorrow: 0
+    mobile: 0
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_program_television_tomorrow:
+  path: 'program-television-tomorrow/{channel_id}/{tomorrow}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel'
+    _title_callback: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel_get_title'
+    tomorrow: 1
+    mobile: 0
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_mobile_program_television:
+  path: 'mobile-program-television/{channel_id}/{tomorrow}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel'
+    _title_callback: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel_get_title'
+    tomorrow: 0
+    mobile: 1
+  requirements:
+    _permission: 'access content'
+
+tvmachine_pages_mobile_program_television_tomorrow:
+  path: 'mobile-program-television-tomorrow/{channel_id}/{tomorrow}'
+  defaults:
+    _controller: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel'
+    _title_callback: '\Drupal\tvmachine_pages\Controller\TVMachinePagesController::tvmachine_programs_channel_get_title'
+    tomorrow: 1
+    mobile: 1
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,1141 @@
+<?php 
+
+/**
+ * @file
+ * Module file for page_example_module.
+ */
+
+use Drupal\tvmachine_blocks\Helper\TVMachineBlocksHelper;
+
+use Drupal\tvmachine_pages\Controller\TVMachinePagesController;
+
+use Drupal\tvmachine_blocks\Helper\DbQueryHelper;
+
+/**
+ * Implements hook_theme().
+ */
+
+function tvmachine_pages_page_attachments(array &$page) {
+
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+
+   $page['#attached']['library'][] = 'tvmachine_pages/admin';
+  }  
+}
+
+function tvmachine_pages_theme() {
+  return array(
+    'tvmachine_iframe_setup' => array(
+      'variables' => array(
+        'sets' => array(), 
+        'template' => 1,
+        'default' => array(),
+        'top_description' => '',
+        'fieldset' => false,
+        'options_hour' => array(),
+        'options_minute' => array(),
+        'path_tvmachine_img' => '',
+        'mainframe_width' => '',
+        'mainframe_height' => '',
+        'default_textarea' => '',
+        'base_url' => '',
+      ),
+      'template' => 'tvmachine_iframe_setup',
+    ),
+    'tvmachine_programs_channel' => array(
+      'variables' => array(
+        'logo_url' => '',
+        'title' => '',
+        'date' => '',
+        'tvm_view_result' => array(),
+        'channel_no_pub' => '',
+        'strpos_uri_manana_not' => '',
+        'strpos_uri_manana' => '',
+        'uri_tomorow' => '',
+        'uri_today' => '',
+        'uri' => '',
+      ),
+      'template' => 'tvmachine_programs_channel',
+    ),
+    'tvmachine_programs_channel_mobile' => array(
+      'variables' => array(
+        'logo_url' => '',
+        'title' => '',
+        'date' => '',
+        'tvm_view_result' => array(),
+        'channel_no_pub' => '',
+        'strpos_uri_manana_not' => '',
+        'strpos_uri_manana' => '',
+        'uri_tomorow' => '',
+        'uri_today' => '',
+        'uri' => '',
+      ),
+      'template' => 'tvmachine_programs_channel_mobile',
+    ),
+    'program_detail_page_1' => array(
+      'variables' => array(
+        'arg' => array(),
+        'result_arr' => array(),
+        'current' => array(),
+        'current_title' => '',
+        'current_url' => '',
+        'translated_day' => '',
+        'translated_month' => '',
+      ),
+      'template' => 'program_detail_page_1',
+    ),
+    'program_detail_page_2' => array(
+      'variables' => array(
+        'arg' => array(),
+        'result_arr' => array(),
+        'current' => array(),
+        'current_title' => '',
+        'current_url' => '',
+        'translated_day' => '',
+        'translated_month' => '',
+      ),
+      'template' => 'program_detail_page_2',
+    ),
+    'program_detail_page_3' => array(
+      'variables' => array(
+        'arg' => array(),
+        'result_arr' => array(),
+        'current' => array(),
+        'current_title' => '',
+        'current_url' => '',
+        'translated_day' => '',
+        'translated_month' => '',
+        'month_back_url' => '',
+        'day_back_url' => '',
+        'hour_back_url' => '',
+        'prev_month_url' => '',
+        'prev_day_url' => '',
+        'next_month_url' => '',
+        'next_day_url' => '',
+      ),
+      'template' => 'program_detail_page_3',
+    ),
+    'program_detail_page_4' => array(
+      'variables' => array(
+        'arg' => array(),
+        'result_arr' => array(),
+        'current' => array(),
+        'current_title' => '',
+        'current_url' => '',
+        'translated_day' => '',
+        'translated_month' => '',
+        'month_back_url' => '',
+        'day_back_url' => '',
+        'hour_back_url' => '',
+        'prev_month_url' => '',
+        'prev_day_url' => '',
+        'next_month_url' => '',
+        'next_day_url' => '',
+      ),
+      'template' => 'program_detail_page_4',
+    ),
+  );
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function tvmachine_pages_page_attachments_alter(array &$attachments) {
+  foreach ($attachments['#attached']['html_head'] as $key => $attachment) {
+
+    if ($attachment[1] == 'system_meta_generator') {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+    if ($attachment[1] == 'MobileOptimized') {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+    if ($attachment[1] == 'HandheldFriendly') {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+    if ($attachment[1] == 'viewport') {
+      unset($attachments['#attached']['html_head'][$key]);
+    }
+  }
+  foreach ($attachments['#attached']['html_head_link'] as $key => $attachment) {
+    if ($attachment[0]['rel'] == 'shortcut icon') {
+
+      $attachments['#attached']['html_head_link'][$key][0]['type'] = 'image/x-icon';
+    }
+  }
+}
+
+function _get_clean_title($movie_title, $movie_category){
+
+  if (strripos(('x'.$movie_title), '100% cine de Oscar: ')) {
+  $movie_title_search = substr($movie_title, strlen('100% cine de Oscar: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), '33 i els Gaudí: ')) {
+  $movie_title_search = substr($movie_title, strlen('33 i els Gaudí: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), '60 minuts: ')) {
+  $movie_title_search = substr($movie_title, strlen('60 minuts: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), '#SCYD: Everyday is Christmas: ')) {
+  $movie_title_search = substr($movie_title, strlen('#SCYD: Everyday is Christmas: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Amor y crimen: ')) {
+  $movie_title_search = substr($movie_title, strlen('Amor y crimen: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Asia extrema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Asia extrema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Barcelona... i acció: ')) {
+  $movie_title_search = substr($movie_title, strlen('Barcelona... i acció: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Be Mad movies: ')) {
+  $movie_title_search = substr($movie_title, strlen('Be Mad movies: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Butaca especial: ')) {
+  $movie_title_search = substr($movie_title, strlen('Butaca especial: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cien x cien cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cien x cien cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine: el megahit: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine: el megahit: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cineaventura: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cineaventura: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinefilia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinefilia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinefílies: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinefílies: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinestar: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinestar: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine 2: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine 2: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine 3D: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine 3D: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine 5 estrellas: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine 5 estrellas: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine a lo bestia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine a lo bestia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine bélico: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine bélico: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine clásico y de aventuras: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine clásico y de aventuras: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine club: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine club: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine con: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine con: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine con estrella: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine con estrella: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine Cuatro: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine Cuatro: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de barrio: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de barrio: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de comedia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de comedia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de copla: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de copla: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), "Cine de l'oest: ")) {
+  $movie_title_search = substr($movie_title, strlen("Cine de l'oest: "), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de medianoche: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de medianoche: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de nit: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de nit: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de noche: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de noche: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de tarde: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de tarde: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de verano: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de verano: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine Divinity: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine Divinity: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de acción: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de acción: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine de Óscar: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine de Óscar: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine en familia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine en familia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine en serie: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine en serie: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine español: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine español: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine estreno: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine estreno: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine éxito: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine éxito: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine familiar: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine familiar: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine galego: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine galego: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine in-culto: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine in-culto: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine inédito: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine inédito: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine Made in Comunitat Valenciana: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine Made in Comunitat Valenciana: '), strlen($movie_title));
+  }
+  elseif (strripos(("x".$movie_title), "Cine n'asturianu: ")) {
+  $movie_title_search = substr($movie_title, strlen("Cine n'asturianu: "), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine para todos: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine para todos: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine sense pauses: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine sense pauses: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine sin cortes: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine sin cortes: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine Supernova: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine Supernova: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine Super Sábado: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine Super Sábado: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine viernes: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine viernes: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine western: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine western: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine wéstern: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine wéstern: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine+Ten: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cine+Ten: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cineaventura: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cineaventura: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinefilia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinefilia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinematrix: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinematrix: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema-Trix: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema-Trix: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema 33: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema 33: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema a mitjanit: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema a mitjanit: '), strlen($movie_title));
+  }
+  elseif (strripos(("x".$movie_title), "Cinema d'estiu: ")) {
+  $movie_title_search = substr($movie_title, strlen("Cinema d'estiu: "), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema de noite: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema de noite: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema sense interrupcions: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema sense interrupcions: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinemetròpolis: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinemetròpolis: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cineaventura: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cineaventura: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinergetic: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinergetic: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cineshock: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cineshock: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Clásicos de La 1: ')) {
+  $movie_title_search = substr($movie_title, strlen('Clásicos de La 1: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Clàssics sense interrupcions: ')) {
+  $movie_title_search = substr($movie_title, strlen('Clàssics sense interrupcions: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Comedia española: ')) {
+  $movie_title_search = substr($movie_title, strlen('Comedia española: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Corazones de acero: ')) {
+  $movie_title_search = substr($movie_title, strlen('Corazones de acero: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cuatro y acción: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cuatro y acción: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Dcine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Dcine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Días de cine clásico: ')) {
+  $movie_title_search = substr($movie_title, strlen('Días de cine clásico: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Directores: ')) {
+  $movie_title_search = substr($movie_title, strlen('Directores: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Dissabte, pel.li!: ')) {
+  $movie_title_search = substr($movie_title, strlen('Dissabte, pel.li!: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'DivinityLand: ')) {
+  $movie_title_search = substr($movie_title, strlen('DivinityLand: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Docs Barcelona: ')) {
+  $movie_title_search = substr($movie_title, strlen('Docs Barcelona: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Documaster: ')) {
+  $movie_title_search = substr($movie_title, strlen('Documaster: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El blockbuster kids: ')) {
+  $movie_title_search = substr($movie_title, strlen('El blockbuster kids: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Enamórate en Nova: ')) {
+  $movie_title_search = substr($movie_title, strlen('Enamórate en Nova: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Especial cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Especial cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Especial El blockbuster: ')) {
+  $movie_title_search = substr($movie_title, strlen('Especial El blockbuster: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Esperando la Navidad: ')) {
+  $movie_title_search = substr($movie_title, strlen('Esperando la Navidad: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Estreas G: ')) {
+  $movie_title_search = substr($movie_title, strlen('Estreas G: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El blockbuster: ')) {
+  $movie_title_search = substr($movie_title, strlen('El blockbuster: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El blockbuster. ')) {
+  $movie_title_search = substr($movie_title, strlen('El blockbuster. '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El cine de La 2: ')) {
+  $movie_title_search = substr($movie_title, strlen('El cine de La 2: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El megahit: ')) {
+  $movie_title_search = substr($movie_title, strlen('El megahit: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El megahit clásico: ')) {
+  $movie_title_search = substr($movie_title, strlen('El megahit clásico: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El megahit presentación: ')) {
+  $movie_title_search = substr($movie_title, strlen('El megahit presentación: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El peliculón: ')) {
+  $movie_title_search = substr($movie_title, strlen('El peliculón: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'El taquillazo: ')) {
+  $movie_title_search = substr($movie_title, strlen('El taquillazo: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Enámorate en Halloween: ')) {
+  $movie_title_search = substr($movie_title, strlen('Enámorate en Halloween: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Enamórate en San Valentín: ')) {
+  $movie_title_search = substr($movie_title, strlen('Enamórate en San Valentín: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Enero de furia: ')) {
+  $movie_title_search = substr($movie_title, strlen('Enero de furia: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Entrada libre: ')) {
+  $movie_title_search = substr($movie_title, strlen('Entrada libre: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Euskal zinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Euskal zinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Fe en el cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Fe en el cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Fila Nueve: ')) {
+  $movie_title_search = substr($movie_title, strlen('Fila Nueve: '), strlen($movie_title));
+  }
+  elseif (strripos(("x".$movie_title), "Friday I'm in love: ")) {
+  $movie_title_search = substr($movie_title, strlen("Friday I'm in love: "), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Gran cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Gran cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Guerreros 2: ')) {
+  $movie_title_search = substr($movie_title, strlen('Guerreros 2: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Guerreros Cuatro: ')) {
+  $movie_title_search = substr($movie_title, strlen('Guerreros Cuatro: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Historia de nuestro cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Historia de nuestro cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Històries del cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Històries del cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Hogar, dulce hogar: ')) {
+  $movie_title_search = substr($movie_title, strlen('Hogar, dulce hogar: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Home Cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Home Cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Home cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Home cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Imprescindibles: ')) {
+  $movie_title_search = substr($movie_title, strlen('Imprescindibles: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Invasión alien: ')) {
+  $movie_title_search = substr($movie_title, strlen('Invasión alien: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Justicieras: ')) {
+  $movie_title_search = substr($movie_title, strlen('Justicieras: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'LaOtra sala: clásicos: ')) {
+  $movie_title_search = substr($movie_title, strlen('LaOtra sala: clásicos: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'LaOtra sala: ')) {
+  $movie_title_search = substr($movie_title, strlen('LaOtra sala: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'LaOtra Sala: ')) {
+  $movie_title_search = substr($movie_title, strlen('LaOtra Sala: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La gran pel.lícula: ')) {
+  $movie_title_search = substr($movie_title, strlen('La gran pel.lícula: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La gran pel·lícula: ')) {
+  $movie_title_search = substr($movie_title, strlen('La gran pel·lícula: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La noche de película: ')) {
+  $movie_title_search = substr($movie_title, strlen('La noche de película: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La noche del director: ')) {
+  $movie_title_search = substr($movie_title, strlen('La noche del director: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La noche de...: ')) {
+  $movie_title_search = substr($movie_title, strlen('La noche de...: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La película de la semana: ')) {
+  $movie_title_search = substr($movie_title, strlen('La película de la semana: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La peli del divendres: ')) {
+  $movie_title_search = substr($movie_title, strlen('La peli del divendres: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'La saga al completo: ')) {
+  $movie_title_search = substr($movie_title, strlen('La saga al completo: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Lo mejor del Oeste: ')) {
+  $movie_title_search = substr($movie_title, strlen('Lo mejor del Oeste: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Mañanas de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Mañanas de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Martes letal: ')) {
+  $movie_title_search = substr($movie_title, strlen('Martes letal: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Max cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Max cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Megacine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Megacine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Megastars: ')) {
+  $movie_title_search = substr($movie_title, strlen('Megastars: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Multicine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Multicine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Navidades Nova: ')) {
+  $movie_title_search = substr($movie_title, strlen('Navidades Nova: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Neox y acción: ')) {
+  $movie_title_search = substr($movie_title, strlen('Neox y acción: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Nitrocine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Nitrocine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Nit de cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Nit de cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Noche de película: ')) {
+  $movie_title_search = substr($movie_title, strlen('Noche de película: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Noche de western: ')) {
+  $movie_title_search = substr($movie_title, strlen('Noche de western: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Noite de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Noite de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Noviembre Survivor: ')) {
+  $movie_title_search = substr($movie_title, strlen('Noviembre Survivor: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Nuevos héroes: ')) {
+  $movie_title_search = substr($movie_title, strlen('Nuevos héroes: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Pel.lícula: ')) {
+  $movie_title_search = substr($movie_title, strlen('Pel.lícula: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Primera sessió: ')) {
+  $movie_title_search = substr($movie_title, strlen('Primera sessió: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Punt de mira: ')) {
+  $movie_title_search = substr($movie_title, strlen('Punt de mira: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sábado de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sábado de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sala 33: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sala 33: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sense ficció: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sense ficció: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sesión de tarde: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sesión de tarde: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sesión doble: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sesión doble: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sesión española: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sesión española: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sessió XL: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sessió XL: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Siempre Amor, Siempre Nova: ')) {
+  $movie_title_search = substr($movie_title, strlen('Siempre Amor, Siempre Nova: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Siempre cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Siempre cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Somos cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Somos cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sofá, cine y Divinity: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sofá, cine y Divinity: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sofá, cine y Divinity Drama Queen: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sofá, cine y Divinity Drama Queen: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sofá, cine y Divinity Xmas Edition: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sofá, cine y Divinity Xmas Edition: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Sobremesa de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Sobremesa de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Summer in love: ')) {
+  $movie_title_search = substr($movie_title, strlen('Summer in love: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Supercine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Supercine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Supercine sin cortes: ')) {
+  $movie_title_search = substr($movie_title, strlen('Supercine sin cortes: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Tarda de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Tarda de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Tardes de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Tardes de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Última sessió: ')) {
+  $movie_title_search = substr($movie_title, strlen('Última sessió: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Una de acción: ')) {
+  $movie_title_search = substr($movie_title, strlen('Una de acción: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Una de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Una de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Una de Seagal: ')) {
+  $movie_title_search = substr($movie_title, strlen('Una de Seagal: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Una de suspense: ')) {
+  $movie_title_search = substr($movie_title, strlen('Una de suspense: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Una región de cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Una región de cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Versión española: ')) {
+  $movie_title_search = substr($movie_title, strlen('Versión española: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Versión europea: ')) {
+  $movie_title_search = substr($movie_title, strlen('Versión europea: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Viernes cine: ')) {
+  $movie_title_search = substr($movie_title, strlen('Viernes cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Viva el cine español: ')) {
+  $movie_title_search = substr($movie_title, strlen('Viva el cine español: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'We Know Drama, We Love Drama: ')) {
+  $movie_title_search = substr($movie_title, strlen('We Know Drama, We Love Drama: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Western: ')) {
+  $movie_title_search = substr($movie_title, strlen('Western: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Zona Indie: ')) {
+  $movie_title_search = substr($movie_title, strlen('Zona Indie: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Zona indie: ')) {
+  $movie_title_search = substr($movie_title, strlen('Zona indie: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cinema: ')) {
+  $movie_title_search = substr($movie_title, strlen('Cinema: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'Cine: ')) {
+    $movie_title_search = substr($movie_title, strlen('Cine: '), strlen($movie_title));
+  }
+  elseif (strripos(('x'.$movie_title), 'A lo bestia: ')) {
+    $movie_title_search = substr($movie_title, strlen('A lo bestia: '), strlen($movie_title));
+  }
+  elseif ($movie_category == 'Cine') { 
+    $movie_title_search = $movie_title;
+  }
+  else {
+    $movie_title_search = NULL;
+  }
+
+  if (isset($movie_title_search)) {
+    $special_characters = array("Á", "á", "É", "é", "Í", "í", "Ñ", "ñ", "Ó", "ó", "Ú", "ú", "Ü", "ü", "«", "»", "¿", "¡");
+    $normal_characters = array("A", "a", "E", "e", "I", "i", "N", "n", "O", "o", "U", "u", "U", "u", "", "", "", "");
+    $movie_title_search = str_replace($special_characters, $normal_characters, $movie_title_search);
+  }
+  return $movie_title_search;
+}
+
+function _get_search_url($clean_title, $title) {
+
+  if ($clean_title) {
+    $URLfilmaffinity='https://www.filmaffinity.com/es/search.php?stext='. urlencode($clean_title) .'&stype=all';
+    $URLinfo='https://www.google.es/search?hl=es&q='.urlencode($clean_title);
+    $URLvideo='https://www.google.es/search?tbm=vid&hl=es&q='.urlencode($clean_title);
+  } else {
+    $URLfilmaffinity = null;
+    $URLinfo='https://www.google.es/search?hl=es&q='.urlencode($title);
+    $URLvideo='https://www.google.es/search?tbm=vid&hl=es&q='.urlencode($title);
+  }
+  $result = array(
+    'URLfilmaffinity' => $URLfilmaffinity,
+    'URLinfo' => $URLinfo,
+    'URLvideo' => $URLvideo,
+  );
+  return $result;
+}
+
+function _get_trailer_url($tv_field_1) {
+
+  if ($tv_field_1) {
+    if (preg_match('/IMDbIDstart(.*?)IMDbIDend/', $tv_field_1, $IMDbID) == 1) {
+      $IMDbID = $IMDbID[1];
+    }
+    if (preg_match('/IMDbRATINGstart(.*?)IMDbRATINGend/', $tv_field_1, $IMDbRATING) == 1) {
+      $IMDbRATING = $IMDbRATING[1];
+    }
+    if (preg_match('/IMDbTRAILERstart(.*?)IMDbTRAILERend/', $tv_field_1, $IMDbTRAILER) == 1) {
+      $IMDbTRAILER = $IMDbTRAILER[1];
+    }
+    if (preg_match('/YOUTUBEstart(.*?)YOUTUBEend/', $tv_field_1, $YOUTUBE) == 1) {
+      $YOUTUBE = $YOUTUBE[1];
+    }
+    
+    if ($IMDbID || $YOUTUBE) {
+        if ($IMDbID) { $URLimdb='https://widgets.its-not.tv/v1/trailer?partner=tvguia_trailer&id='.$IMDbID;}
+        if ($YOUTUBE) {$URLyoutube='https://www.youtube-nocookie.com/embed/'.$YOUTUBE.'?rel=0&iv_load_policy=3&showinfo=1&autoplay=0';}
+
+      if($IMDbTRAILER == 'S') {
+        return array('url' => $URLimdb, 'iframe_h' => 190, 'iframe_h_prog' => 265);
+      }
+      if((!empty($YOUTUBE)) && ($IMDbTRAILER != 'S')) {
+        return array('url' => $URLyoutube, 'iframe_h' => 260, 'iframe_h_prog' => 284);
+      } else { return array('url' => null, 'iframe_h' => null, 'iframe_h_prog' => null);}
+    } else {
+      return array('url' => null, 'iframe_h' => null, 'iframe_h_prog' => null);
+    }
+  } else {
+    return array('url' => null, 'iframe_h' => null, 'iframe_h_prog' => null);
+  }
+}
+
+/**
+* Implements hook_ENTITY_TYPE_view_alter().
+*/
+function tvmachine_pages_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+
+  if ($entity->getType() == 'program') {
+
+    $TVMachineBlocksHelper = new TVMachineBlocksHelper();
+
+    $base_url = \Drupal::request()->getSchemeAndHttpHost();
+    
+    $program_data = _extract_program_values($entity);
+
+    $program['current'] = array(
+      'nid' => $entity->id(),
+      'title' => $entity->getTitle(),
+      'month' => $program_data['field_program_month'],
+      'day' => $program_data['field_program_day'],
+      'hour' => $program_data['field_program_hour'],
+      'minute' => str_pad((int) $program_data['field_program_minutes'],2,"0",STR_PAD_LEFT),
+      'description' => $program_data['field_program_description'],
+      'subtitle' => $program_data['field_program_subtitle'],
+      'tv_field_1' => $program_data['field_program_tv_field_1'],
+      'clean_title' => $program_data['clean_title'],
+      'urlinfo' => $program_data['URLinfo'],
+      'urlvideo' => $program_data['URLvideo'],
+      'urlfilmaffinity' => $program_data['URLfilmaffinity'],
+      'trailer_url'  => $program_data['trailer_url'],
+      'iframe_h'  => $program_data['iframe_h'],
+      'iframe_h_prog'  => $program_data['iframe_h_prog'],
+      'tv_area_1' => $program_data['field_program_tv_area_1'],
+      'tv_area_2' => $program_data['field_program_tv_area_2'],
+      'tv_area_3' => $program_data['field_program_tv_area_3'],
+      'information' => $program_data['field_program_information'],
+      'category' => $program_data['field_program_category'],
+      'image_upload' => $program_data['field_program_image_upload'],
+      'image_upload_height' => $program_data['field_program_image_upload_height'],
+      'image_upload_width' => $program_data['field_program_image_upload_width'],
+    );
+
+    $channel_obj = $entity->get('field_program_channel')->referencedEntities()[0];
+    $channel_data = _extract_channel_values($channel_obj);
+
+    $program['current']['logo_src'] = $channel_data['field_channels_logo'];
+    $program['current']['channel_url'] = $channel_data['field_channels_url'];
+    $program['current']['channel_url_live'] = $channel_data['field_channels_url_live'];
+    $program['current']['channel_url_replay'] = $channel_data['field_channels_url_replay'];
+    $program['current']['channel_description'] = $channel_data['field_channels_description'];
+
+    if(strlen($program['current']['description']) >= 150 && (stripos($program['current']['tv_area_1'], 'erótic') === false)&&(stripos($program['current']['tv_area_1'], 'adultos') === false)&&(stripos($program['current']['description'], 'sex') === false)&&(stripos($program['current']['description'], 'erótic') === false)&&(stripos($program['current']['description'], 'porno') === false)&&(stripos($program['current']['title'], 'sex') === false)) {
+      $program['current']['description_more_150'] = true;
+    }
+
+    $program['current']['urlencode_title'] = urlencode($program['current']['title']);
+
+    // to get next and previos programs, we have loaded rows from view 'view_program_detail'
+
+    $TVMachinePagesController = new TVMachinePagesController();
+    $DbQueryHelper = new DbQueryHelper();
+
+    $unixtime = $TVMachineBlocksHelper->program_time_to_unix($program_data['field_program_minutes'], $program_data['field_program_hour'], $program_data['field_program_day'], $program_data['field_program_month']);
+
+    $time_min = $unixtime - (4* 60 *60);
+    $time_max = $unixtime + (4* 60 *60);
+
+    $prev_programs = $DbQueryHelper->get_prev_programs($unixtime, $time_min, $channel_obj->id());
+    $next_programs = $DbQueryHelper->get_next_programs($unixtime, $time_max, $channel_obj->id());
+
+    if (isset($prev_programs[0])) {
+      $program['prev']['title'] = $prev_programs[0]['title'];
+      $program['prev']['field_program_minutes'] = str_pad((int) $prev_programs[0]['minutes'],2,"0",STR_PAD_LEFT);
+      $program['prev']['field_program_hour'] = str_pad((int) $prev_programs[0]['hour'],2,"0",STR_PAD_LEFT);
+      $program['prev']['url'] = $base_url.$DbQueryHelper->get_alias_by_nid($prev_programs[0]['nid']);
+    }
+
+    if (isset($next_programs[0])) {
+      $program['next']['title'] = $next_programs[0]['title'];
+      $program['next']['field_program_minutes'] = str_pad((int) $next_programs[0]['minutes'],2,"0",STR_PAD_LEFT);
+      $program['next']['field_program_hour'] = str_pad((int) $next_programs[0]['hour'],2,"0",STR_PAD_LEFT);
+      $program['next']['url'] = $base_url.$DbQueryHelper->get_alias_by_nid($next_programs[0]['nid']);
+    }
+
+    if (isset($next_programs[1])) {
+      $program['after_next']['title'] = $next_programs[1]['title'];
+      $program['after_next']['field_program_minutes'] = str_pad((int) $next_programs[1]['minutes'],2,"0",STR_PAD_LEFT);
+      $program['after_next']['field_program_hour'] = str_pad((int) $next_programs[1]['hour'],2,"0",STR_PAD_LEFT);
+      $after_next_program_minutes  = str_pad((int) $next_programs[1]['minutes'],2,"0",STR_PAD_LEFT);
+    }
+
+    $mktime = mktime($program['current']['hour'],$program['current']['minute'], 0, $program['current']['month'], $program['current']['day'], date("Y"));
+    
+    $date = array(
+      'weekday' => date('l',$mktime),
+      'hour'    => date('H',$mktime),
+      'minute'  => date('i',$mktime),
+      'day'     => date('d',$mktime),
+      'month'   => date('F',$mktime),
+      'year'    => date('Y')
+    );
+    
+    $english_month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    $translated_month = array('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre');
+    
+    $english_day = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+    $translated_day = array('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo');
+
+    $date_string = "".str_replace($english_day, $translated_day, t($date['weekday'])).", {$date['day']} de ".str_replace($english_month, $translated_month, t($date['month']));   
+
+    $time_string = " &nbsp;&nbsp;<span class='program-hour'>{$program['current']['hour']}:{$program['current']['minute']}";
+
+    if(isset($program['next']) && $program['next']) $time_string .= " - {$program['next']['field_program_hour']}:{$program['next']['field_program_minutes']}";
+
+    $time_string .= "</span>";
+
+    $build['program_date']['date_string'] = $date_string;
+    $build['program_date']['time_string'] = $time_string;
+
+    if (isset($program['current']['category'])) {
+
+      $build['bg_category']['text_bg_category'] = $TVMachineBlocksHelper->replace_text_bg_category2($program['current']['category']);    
+    }
+
+    if ($program['current']['tv_area_2']) {
+      $program['current']['tv_area_2'] = _replace_tv_area_2($program['current']['tv_area_2']);
+    }
+
+    // Pass the var to the template
+    $build['program'] = $program;
+
+  }
+}
+ 
+function _extract_program_values($program_obj, $image_style = '200x000') {
+
+  $values = [];
+  $DbQueryHelper = new DbQueryHelper;
+
+  // Extract Program data from Program object:
+
+  $values['nid'] = $program_obj->id();
+  $values['alias'] =  $DbQueryHelper->get_alias_by_nid($program_obj->id());
+
+  $values['title'] = $program_obj->getTitle();
+  $values['field_program_subtitle'] = $program_obj->get('field_program_subtitle')->value;      
+
+  $values['field_program_month'] = $program_obj->get('field_program_month')->value; 
+  $values['field_program_day'] = $program_obj->get('field_program_day')->value; 
+  $values['field_program_hour'] = $program_obj->get('field_program_hour')->value;
+  $values['field_program_minutes'] = $program_obj->get('field_program_minutes')->value;
+  $values['timestart']  = mktime($values['field_program_hour'],$values['field_program_minutes'],0,$values['field_program_month'],$values['field_program_day'],date("Y"));       
+
+  $values['field_program_image'] = $program_obj->get('field_program_image')->value;
+
+  $values['field_program_description'] = $program_obj->get('field_program_description')->value;
+  $values['field_program_tv_field_1'] = $program_obj->get('field_program_tv_field_1')->value;
+
+  $values['clean_title'] = _get_clean_title($values['title'], $program_obj->get('field_program_category')->value);
+
+  $video_urls = _get_search_url($values['clean_title'], $values['title']);
+  $values['URLfilmaffinity'] = $video_urls['URLfilmaffinity'];
+  $values['URLinfo'] = $video_urls['URLinfo'];
+  $values['URLvideo'] = $video_urls['URLvideo'];
+
+  $trailer_info = _get_trailer_url($values['field_program_tv_field_1']);
+  $values['trailer_url'] = $trailer_info['url'];
+  $values['iframe_h'] = $trailer_info['iframe_h'];
+  $values['iframe_h_prog'] = $trailer_info['iframe_h_prog'];
+  $values['field_program_tv_area_1'] = $program_obj->get('field_program_tv_area_1')->value;
+  $values['field_program_tv_area_2'] = $program_obj->get('field_program_tv_area_2')->value;
+  $values['field_program_tv_area_3'] = $program_obj->get('field_program_tv_area_3')->value;
+  $values['field_program_information'] = $program_obj->get('field_program_information')->value;
+  $values['field_program_category'] = $program_obj->get('field_program_category')->value; 
+
+  $file_id = $program_obj->get('field_program_image_upload')->target_id;
+
+  if ($file_id) {
+    $TVMachineBlocksHelper = new TVMachineBlocksHelper(); 
+    $image_data = $TVMachineBlocksHelper->tvmachine_get_image_style_uri($file_id, $image_style);
+
+    $values['field_program_image_upload'] = $image_data['style_uri'];
+    $values['field_program_image_upload_origin'] = $image_data['origin_uri'];
+    $values['field_program_image_upload_height'] = $image_data['height'];
+    $values['field_program_image_upload_width'] = $image_data['width'];
+
+  } else {
+    $values['field_program_image_upload'] = NULL;
+    $values['field_program_image_upload_origin'] = NULL;
+    $values['field_program_image_upload_height'] = NULL;
+    $values['field_program_image_upload_width'] = NULL; 
+  }
+
+  return $values;
+}
+
+function _extract_channel_values($channel_obj, $image_id = 0){
+
+  $values = [];
+
+  // Extract Channel data from Channel object:
+
+  $file_id = $channel_obj->get('field_channels_logo')[$image_id]->target_id;
+  if ($file_id) {
+    $TVMachineBlocksHelper = new TVMachineBlocksHelper(); 
+    $image_data = $TVMachineBlocksHelper->tvmachine_get_image_style_uri($file_id);
+    $values['field_channels_logo'] = $image_data['origin_uri'];
+
+  } else {
+    $values['field_channels_logo'] = NULL;
+  }
+
+  $values['field_channels_description'] = str_replace(array("\r\n", "\r", "\n"), '', $channel_obj->get('field_channels_description')->value);
+
+  $values['field_channels_url'] = $channel_obj->get('field_channels_url')->value;
+  $values['field_channels_url_live'] = $channel_obj->get('field_channels_url_live')->value;
+  $values['field_channels_url_replay'] = $channel_obj->get('field_channels_url_replay')->value; 
+  $values['title'] = $channel_obj->getTitle();
+  
+  return $values;
+}
+
+function _replace_bg_category($field_program_category) {
+
+  if(($field_program_category =='Cine') || ($field_program_category=='Cortometrajes'))
+  {
+    $bg_category = 'bg_peliculas';
+  }
+  else if(($field_program_category=='Miniserie') || ($field_program_category=='Serie') || ($field_program_category=='Telenovela'))
+  {
+    $bg_category = 'bg_series';
+  }
+  else if($field_program_category=='Deportivo')
+  {
+    $bg_category = 'bg_deportes';
+  }
+  else if(($field_program_category=='Actualidad cinematográfica') || ($field_program_category=='Actualidad cultural') || ($field_program_category=='Debate') || ($field_program_category=='Economía') || ($field_program_category=='Informativo') || ($field_program_category=='Meteorológico') || ($field_program_category=='Política') || ($field_program_category=='Actualidad'))
+  {
+    $bg_category = 'bg_noticias';
+  }
+  else if(($field_program_category=='Animación') || ($field_program_category=='Infantil') || ($field_program_category=='Juvenil'))
+  {
+    $bg_category = 'bg_infantil';
+  }
+  else if(($field_program_category=='Concierto') || ($field_program_category=='Entretenimiento') || ($field_program_category=='Gastronómico') || ($field_program_category=='Humor') || ($field_program_category=='Late show') || ($field_program_category=='Magia') || ($field_program_category=='Misterio') || ($field_program_category=='Moda') || ($field_program_category=='Musical') || ($field_program_category=='Sketches') || ($field_program_category=='Talk show') || ($field_program_category=='Zapping'))
+  {
+    $bg_category = 'bg_entretenimiento';
+  }
+  else if(($field_program_category=='Agronomía') || ($field_program_category=='Aventura') || ($field_program_category=='Divulgativo') || ($field_program_category=='Documental') || ($field_program_category=='Docu-reality') || ($field_program_category=='Magacín') || ($field_program_category=='Magacín de actualidad') || ($field_program_category=='Magazine') || ($field_program_category=='Medio ambiente') || ($field_program_category=='Naturaleza') || ($field_program_category=='Reportajes') || ($field_program_category=='Salud') || ($field_program_category=='Environnement') || ($field_program_category=='Serie documental') || ($field_program_category=='Turismo') || ($field_program_category=='Cultural') || ($field_program_category=='Educativo') || ($field_program_category=='Bricolaje') || ($field_program_category=='Literatura'))
+  {
+    $bg_category = 'bg_documental';
+  }
+  else if(($field_program_category=='Concurso') || ($field_program_category=='Talent Show'))
+  {
+    $bg_category = 'bg_concursos';
+  }
+  else if(($field_program_category=='Actualidad social') || ($field_program_category=='Actualidad televisiva'))
+  {
+    $bg_category = 'bg_corazon';
+  }
+  else if($field_program_category=='reality')
+  {
+    $bg_category = 'bg_reality';
+  }
+  else
+  {
+    $bg_category = 'bg_prog';
+  }
+
+  return $bg_category;
+}
+
+function _replace_tv_area_2($tv_area_2_val) {
+
+  if(stripos($tv_area_2_val, 'Colaborador:') !== false){$tv_area_2_val = str_ireplace('Colaborador:', '<br /><strong>Colaborador:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradora:') !== false){$tv_area_2_val = str_ireplace('Colaboradora:', '<br /><strong>Colaboradora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradores:') !== false){$tv_area_2_val = str_ireplace('Colaboradores:', '<br /><strong>Colaboradores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradoras:') !== false){$tv_area_2_val = str_ireplace('Colaboradoras:', '<br /><strong>Colaboradoras:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Deportes:') !== false){$tv_area_2_val = str_ireplace('Deportes:', '<br /><strong>Deportes:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Director:') !== false){$tv_area_2_val = str_ireplace('Director:', '<br /><strong>Director:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directora:') !== false){$tv_area_2_val = str_ireplace('Directora:', '<br /><strong>Directora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directores:') !== false){$tv_area_2_val = str_ireplace('Directores:', '<br /><strong>Directores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directoras:') !== false){$tv_area_2_val = str_ireplace('Directoras:', '<br /><strong>Directoras:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Interprete:') !== false){$tv_area_2_val = str_ireplace('Interprete:', '<br /><strong>Interprete:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Interpretes:') !== false){$tv_area_2_val = str_ireplace('Interpretes:', '<br /><strong>Interpretes:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitado:') !== false){$tv_area_2_val = str_ireplace('Invitado:', '<br /><strong>Invitado:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitada:') !== false){$tv_area_2_val = str_ireplace('Invitada:', '<br /><strong>Invitada:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitados:') !== false){$tv_area_2_val = str_ireplace('Invitados:', '<br /><strong>Invitados:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitadas:') !== false){$tv_area_2_val = str_ireplace('Invitadas:', '<br /><strong>Invitadas:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentador:') !== false){$tv_area_2_val = str_ireplace('Presentador:', '<br /><strong>Presentador:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadora:') !== false){$tv_area_2_val = str_ireplace('Presentadora:', '<br /><strong>Presentadora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadores:') !== false){$tv_area_2_val = str_ireplace('Presentadores:', '<br /><strong>Presentadores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadoras:') !== false){$tv_area_2_val = str_ireplace('Presentadoras:', '<br /><strong>Presentadoras:</strong>', $tv_area_2_val);}
+  return $tv_area_2_val;
+}
+
+function _replace_tv_area_2_for_temp_3_and_4($tv_area_2_val) {
+  if(stripos($tv_area_2_val, 'Colaborador:') !== false){$tv_area_2_val = str_ireplace('Colaborador:', '<br /><strong>Colaborador:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradora:') !== false){$tv_area_2_val = str_ireplace('Colaboradora:', '<br /><strong>Colaboradora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradores:') !== false){$tv_area_2_val = str_ireplace('Colaboradores:', '<br /><strong>Colaboradores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Colaboradoras:') !== false){$tv_area_2_val = str_ireplace('Colaboradoras:', '<br /><strong>Colaboradoras:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Deportes:') !== false){$tv_area_2_val = str_ireplace('Deportes:', '<br /><strong>Deportes:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Director:') !== false){$tv_area_2_val = str_ireplace('Director:', '<br /><strong>Director:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directora:') !== false){$tv_area_2_val = str_ireplace('Directora:', '<br /><strong>Directora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directores:') !== false){$tv_area_2_val = str_ireplace('Directores:', '<br /><strong>Directores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Directoras:') !== false){$tv_area_2_val = str_ireplace('Directoras:', '<br /><strong>Directoras:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Interprete:') !== false){$tv_area_2_val = str_ireplace('Interprete:', '<br /><strong>Interprete:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Interpretes:') !== false){$tv_area_2_val = str_ireplace('Interpretes:', '<br /><strong>Interpretes:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitado:') !== false){$tv_area_2_val = str_ireplace('Invitado:', '<br /><strong>Invitado:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitada:') !== false){$tv_area_2_val = str_ireplace('Invitada:', '<br /><strong>Invitada:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitados:') !== false){$tv_area_2_val = str_ireplace('Invitados:', '<br /><strong>Invitados:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Invitadas:') !== false){$tv_area_2_val = str_ireplace('Invitadas:', '<br /><strong>Invitadas:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentador:') !== false){$tv_area_2_val = str_ireplace('Presentador:', '<br /><strong>Presentador:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadora:') !== false){$tv_area_2_val = str_ireplace('Presentadora:', '<br /><strong>Presentadora:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadores:') !== false){$tv_area_2_val = str_ireplace('Presentadores:', '<br /><strong>Presentadores:</strong>', $tv_area_2_val);}
+  if(stripos($tv_area_2_val, 'Presentadoras:') !== false){$tv_area_2_val = str_ireplace('Presentadoras:', '<br /><strong>Presentadoras:</strong>', $tv_area_2_val);}
+  return $tv_area_2_val;
+}
+
+function _get_string_between($string, $start, $end){
+  $string = " ".$string;
+  $ini = strpos($string,$start);
+  if ($ini == 0) return "";
+  $ini += strlen($start);   
+  $len = strpos($string,$end,$ini) - $ini;
+  return substr($string,$ini,$len);
+}
+
+function _programs_timeseries($cur_program_nid, $view_result) {
+
+  $pos_current_record = false;
+
+  if (!empty($view_result)) {
+    foreach ($view_result as $key => $row) {
+      $program_nid = $row->_entity->id(); // Id from the program object
+      if ($cur_program_nid == $program_nid) {
+        $pos_current_record = $key;
+      }
+    }
+  }
+
+  if ($pos_current_record) {
+
+    $pos_prev_record = $pos_current_record-1;
+    $pos_next_record = $pos_current_record+1;
+    $pos_after_next_record = $pos_current_record+2;
+    $program_prev = ($pos_prev_record >=0)?$view_result[$pos_prev_record]->_entity:false;
+    $program_next = ($pos_next_record < count($view_result))?$view_result[$pos_next_record]->_entity:false;
+    $program_after_next = ($pos_after_next_record < count($view_result))?$view_result[$pos_after_next_record]->_entity:false;
+  } else {
+    $program_prev = NULL;
+    $program_next = NULL;
+    $program_after_next = NULL;
+  }
+
+  return  array(
+    'prev' => $program_prev, 
+    'cur' => $pos_current_record,
+    'next' => $program_next, 
+    'after_next' => $program_after_next, 
+  );
+
+}
+

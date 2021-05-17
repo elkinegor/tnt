@@ -1,0 +1,165 @@
+body {
+	font-family: arial, sans-serif;
+	margin: 0;
+	padding: 0
+	}
+
+#iframe {
+	margin: 0
+	}
+
+.loading,
+.loading_2 {
+	background: url(../images/loading.gif) center no-repeat #FFF;
+	height: 32px;
+	width: 100%
+	}
+
+.tvtime {
+	float: left;
+	height: 19px;
+	border-style: none;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: middle;
+	margin: 0;
+	padding: 3px 0 0;
+	overflow: hidden;
+	white-space: nowrap
+	}
+
+.tvcat {
+	float: left;
+	height: 15px;
+	border-style: none;
+	font-size: 12px;
+	text-align: left;
+	margin: 0;
+	padding: 8px 15px 2px 5px;
+	overflow: hidden;
+	white-space: normal;
+	cursor: pointer
+	}
+
+.tvcat a:active,
+.tvcat a:hover,
+.tvcat a:link,
+.tvcat a:visited {
+	text-decoration: none
+	}
+
+.cat_peliculas {
+	background: url(../images/bg-cat-box.png) no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_peliculas_highlight { background-position: -15px 0}
+
+.cat_series {
+	background: url(../images/bg-cat-box.png) 0 -15px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_series_highlight { background-position: -15px -15px}
+
+.cat_deportes {
+	background: url(../images/bg-cat-box.png) 0 -30px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_deportes_highlight { background-position: -15px -30px}
+
+.cat_infantil {
+	background: url(../images/bg-cat-box.png) 0 -45px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_infantil_highlight { background-position: -15px -45px}
+
+.cat_entretenimiento {
+	background: url(../images/bg-cat-box.png) 0 -60px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_entretenimiento_highlight { background-position: -15px -60px}
+
+.cat_documental {
+	background: url(../images/bg-cat-box.png) 0 -75px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_documental_highlight { background-position: -15px -75px}
+
+.cat_noticias {
+	background: url(../images/bg-cat-box.png) 0 -90px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_noticias_highlight { background-position: -15px -90px}
+
+.cat_concursos {
+	background: url(../images/bg-cat-box.png) 0 -105px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_concursos_highlight { background-position: -15px -105px}
+
+.cat_corazon {
+	background: url(../images/bg-cat-box.png) 0 -120px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_corazon_highlight { background-position: -15px -120px}
+
+.cat_reality {
+	background: url(../images/bg-cat-box.png) 0 -135px no-repeat;
+	float: left;
+	height: 15px;
+	margin: 0 4px 0 0;
+	width: 15px
+	}
+.cat_reality_highlight { background-position: -15px -135px}
+
+.tvcopy {
+	float: right;
+	height: 15px;
+	border: none;
+	font-family: verdana, arial, sans-serif;
+	font-size: 10px;
+	text-align: right;
+	margin: 0;
+	padding: 12px 10px 0 0
+	}
+
+.tvcopy a:active,
+.tvcopy a:hover,
+.tvcopy a:link,
+.tvcopy a:visited {
+	text-decoration: none
+	}
+
+div#webmasters {
+	text-align: center
+	}
+
+.hidden {
+	visibility: hidden
+	}

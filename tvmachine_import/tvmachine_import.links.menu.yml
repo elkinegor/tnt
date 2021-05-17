@@ -1,0 +1,7 @@
+tvmachine_import.csv_export:
+  title: 'Import program'
+  description: 'Import program from CSV file.'
+  menu_name: admin
+  route_name: tvmachine_import.csv_export
+  parent: system.admin_content
+  weight: 100

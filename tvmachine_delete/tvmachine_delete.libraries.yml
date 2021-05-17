@@ -1,0 +1,10 @@
+delete_form:
+  version: 1.x
+  js:
+    js/delete_form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+  css:
+    base:
+      css/style.css: {}

@@ -1,0 +1,45 @@
+temp_5:
+  version: 1.x
+  js:
+    js/mainframe.js: {}
+    js/highlight.js: {}
+    js/ajax_details.js: {}
+    js/buttonsday_onload.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+  css:
+    base:
+      css/iframe_detail.css: {}
+      css/ajax_temp_grid_5.css: {}
+      css/tvmachine_block_temp_5.css: {}
+temp_6:
+  version: 1.x
+  js:
+    js/mainframe.js: {}
+    js/highlight.js: {}
+    js/ajax_details.js: {}
+    js/buttonsday_onload.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+  css:
+    base:
+      css/iframe_detail.css: {}
+      css/ajax_temp_grid_6.css: {}
+      css/tvmachine_block_temp_6.css: {}
+temp_7:
+  version: 1.x
+  css:
+    base:
+      css/tvmachine_block_temp_7.css: {}
+tvmachine_iframe_setup:
+  version: 1.x
+  css:
+    theme:
+      css/tvmachine_block_theme.css: {}
+program:
+  version: 1.x
+  css:
+    theme:
+      css/program.css: {}

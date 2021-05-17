@@ -1,0 +1,7 @@
+tvmachine_delete.delete:
+  title: 'Delete templates'
+  description: 'Delete template files'
+  menu_name: admin
+  route_name: tvmachine_delete.delete
+  parent: system.admin_content
+  weight: 100

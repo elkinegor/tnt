@@ -1,0 +1,109 @@
+<?php
+
+use Drupal\tvmachine_blocks\Helper\TVMachineBlocksHelper;
+
+function tvmachine_import_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+
+  if ($entity->getEntityTypeId() == 'node'){
+
+  	if ($entity->bundle() == 'sets') {
+
+    	$sets_node_nid = $entity->id();
+
+	  	$query = \Drupal::entityQuery('node');
+	    $query->condition('type', 'channels');
+	    $channels = $query->execute();
+
+	    foreach ($channels as $key => $channel_id) {
+
+				$node_channel = node_load($channel_id);
+
+				if ($node_channel->get('field_channels_sets')) {
+					foreach($node_channel->get('field_channels_sets')->getValue() as $idx => $set){
+
+						if ($set['target_id'] == $sets_node_nid) {
+
+							$node_channel->get('field_channels_sets')->removeItem($idx);
+
+						}
+					}
+					$node_channel->save();
+
+				}
+			}
+
+			// build cck set of channels
+			// Lay the values channel_id in the form submit
+			
+			foreach ($entity->get('field_sets_channels')->getValue() as $channel)	{
+
+				$node_channel = node_load($channel['target_id'], true);
+				$found = false;
+
+				foreach($node_channel->get('field_channels_sets')->getValue() as $set) {
+					if ($set['target_id'] == $sets_node_nid) { $found = true; break; }
+				}
+			
+				if (!$found) {
+
+					$node_channel->field_channels_sets[] = array('target_id'=>$sets_node_nid);
+				}
+
+				$node_channel->save();
+			}
+    }
+
+    if ($entity->bundle() == 'program') {
+
+      // generate images
+
+      $tvmachineBlocksHelper = new TVMachineBlocksHelper;  
+
+      $file = $entity->get('field_program_image_upload')->entity;
+
+      if($file) {
+        
+        $file_uri = $file->getFileUri();
+
+        $tvmachineBlocksHelper->generate_image_style('53x53', $file_uri);
+      //$tvmachineBlocksHelper->generate_image_style('200x000', $file_uri);
+      //$tvmachineBlocksHelper->generate_image_style('300x000', $file_uri);
+      }
+    }
+
+  }
+}
+
+
+function tvmachine_import_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+
+  if ($entity->getEntityTypeId() == 'node'){
+
+    if ($entity->bundle() == 'program') {
+
+      // Set unix time
+      $tvmachineBlocksHelper = new TVMachineBlocksHelper;   
+      $unixtime = $tvmachineBlocksHelper->program_time_to_unix($entity->get('field_program_minutes')->value, $entity->get('field_program_hour')->value, $entity->get('field_program_day')->value, $entity->get('field_program_month')->value, $entity->get('field_program_year')->value);
+
+      $entity->set('field_program_start_time', $unixtime);
+    }
+  }
+}
+
+
+function tvmachine_import_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+
+	if ($entity->getEntityTypeId() == 'node') {
+
+    if ($entity->bundle() == 'program') {
+
+    	$image_entity = $entity->get('field_program_image_upload')->entity;
+
+      if ($image_entity) {
+        
+      	$image_entity->delete();
+
+      }
+    }
+  }
+}

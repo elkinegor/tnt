@@ -1,0 +1,29 @@
+<?php
+
+function _invalidate_cache_tags_cron() {
+
+  \Drupal\Core\Cache\Cache::invalidateTags(['config:block.block.listingdesktop','config:block.block.php_adhomeside','config:block.block.php_footer_listing_desktop','config:block.block.listingnowdesktop','config:block.block.listingpolldesktop','config:block.block.listingmobile','config:block.block.php_adhomemobile','config:block.block.listingpollmobile']);
+
+}
+
+function _invalidate_cache_tags_mobile_cron() {
+
+  \Drupal\Core\Cache\Cache::invalidateTags(['config:block.block.listingmobile','config:block.block.php_adhomemobile','config:block.block.listingpollmobile']);
+
+}
+
+function _invalidate_cache_tags_desktop_cron() {
+
+  \Drupal\Core\Cache\Cache::invalidateTags(['config:block.block.listingdesktop','config:block.block.php_adhomeside','config:block.block.php_footer_listing_desktop','config:block.block.listingnowdesktop','config:block.block.listingpolldesktop']);
+
+}
+
+/**
+ *  update also : /modules/custom/tvmachine_delete/src/Form/DeleteForm.php 
+ *  
+ *  exmaple of tags :
+ *  node:124
+ *  block_content:24'
+ *  config:block.block.listingmobile
+ * 
+ */

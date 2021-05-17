@@ -1,0 +1,7 @@
+import_form:
+  version: 1.x
+  js:
+    js/import_form.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

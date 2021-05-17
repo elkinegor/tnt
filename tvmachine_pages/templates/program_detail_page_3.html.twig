@@ -1,0 +1,290 @@
+<!-- views-view-table-view_program_detail-page_3.html -->
+<div id="header-wrapper-up">
+	<div id="tvlogo">
+		<a title="Programación TV" href="/mobile/programacion-tv">
+			<img src="/themes/tv_mobile/images/programacion-tv.png" alt="Programación TV" width="144" height="31" border="0">
+		</a>
+	</div>
+</div> <!-- header-wrapper-up -->
+
+<br style="clear:both;" />
+
+<div id="detail-program-content">
+	<div class="details-television">
+		<div class="info-details-television 3">
+			<div class="logo-details-television"><a href="{{ result_arr['node_path'] }}" target="_blank"><img class="imagefield imagefield-field_channels_logo" width="48" height="40" alt="" src="{{ result_arr['time']['current']['logo'] }}"></a></div><div class="date-details-television">{{ result_arr['time_string'] }}</div>
+	  	{% if result_arr['time']['current']['category'] %}
+		  	<div class="category-details-television {{ result_arr['text_bg_category'] }}">{{ result_arr['time']['current']['category'] }}</div>
+		  {% endif %}
+		</div>
+		<br style="clear:both;" />
+
+		<!-- google_ad_section_start -->  
+	  <h1>
+	    <div class="title-details-television">
+	    	{{ result_arr['time']['current']['title'] }}
+	  	</div>
+	  </h1>
+
+	  {% if result_arr['time']['current']['subtitle'] %}
+	  	<div class="element-details-television">
+		    <strong>{{ result_arr['time']['current']['subtitle']|raw }}</strong>
+		  </div>
+	  {% endif %}
+
+	  {% if result_arr['time']['current']['tv_area_1'] %}
+	  	<div class="element-details-television area-1-details-television">
+	      {{ result_arr['time']['current']['tv_area_1']|raw }}
+	    </div>
+	  {% endif %}
+
+	  <br />
+
+	  {% if not result_arr['time']['current']['description'] %}
+
+	  	<div style="color:#999999; font-size:11px"><br />
+	      No hay informaci&oacute;n adicional disponible para este programa.<br />
+	      Puedes visionar los v&iacute;deos disponibles en Google o bien consultar directamenete la Web de {{ result_arr['time']['current']['channel_description']|striptags }}
+	    <br />
+
+	    {% if not result_arr['time']['current']['channel_url_replay'] %}
+
+	    	Ese canal ofrece televisi&oacute;n a la carta para volver a ver todos los programas TV, series y documentales diponibles... ya emitidos en {{ result_arr['time']['current']['channel_description']|striptags }}.<br />
+
+	    {% endif %}
+
+	    {% if not result_arr['time']['current']['channel_url_live'] %}
+
+	    	{{ result_arr['time']['current']['channel_url_live'] }} est&aacute; tambi&eacute;n disponible en streaming. (Por razones de derechos de autor y difusi&oacute;n, algunos programas, tales como pel&iacute;culas y series am&eacute;ricanas ... no est&aacute;n disponibles online)<br />
+
+	    {% endif %}
+
+	    </div><br />
+
+	  {% endif %}
+
+	  {% if result_arr['time']['current']['description'] %}
+
+	  	<div class="element-details-television">{{ result_arr['time']['current']['description']|raw }}</div>
+	  	<br style="clear:both;" />
+
+	  {% endif %}
+
+	</div> <!-- div details-television -->
+
+  <br style="clear:both;" />
+  
+  <div id="ad-swipe">
+
+	  {% if result_arr['description_more_200'] %}
+
+	  	{% set nid_last_digit = result_arr['time']['current']['nid']|last %}
+	  	{% set cur_day = "now"|date("d", "Europe/Paris") %}
+
+	  	<div class="ad-details-television">
+	      {% if (cur_day == '21' or cur_day ==  '22' or cur_day ==  '23' or cur_day ==  '24' or cur_day ==  '25') and (nid_last_digit == '0' or nid_last_digit == '1' or nid_last_digit == '2' or nid_last_digit == '3') %}
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    	    <!-- Bloque de 336 x 280 pixeles -->
+    	    <ins class="adsbygoogle"
+    	         style="display:inline-block;width:336px;height:280px"
+    	         data-ad-client="ca-pub-6412530744130865"
+    	         data-ad-slot="1966106009"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        {% elseif (cur_day == '26' or cur_day ==  '27') and (nid_last_digit == '0' or nid_last_digit == '1' or nid_last_digit == '2' or nid_last_digit == '3') %}
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- OneData 336x280 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-8975649173389036"
+                 data-ad-slot="8148047069"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        {% else %}
+
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- TV es prog mobile 336x280 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-8975649173389036"
+                 data-ad-slot="6141334014"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        {% endif %}  
+	    </div> <!-- div ad-details-television -->
+
+	  {% endif %}
+
+  </div> <!-- ad-swipe -->
+  <br style="clear:both;" />
+
+  <div class="details-television">
+
+  	{% if result_arr['time']['current']['trailer_url'] %} 
+  	  <br style="clear:both;" />
+	  <iframe borderframe="0" id="iFrameResizer0" style="overflow: hidden; height: {{result_arr['time']['current']['iframe_h']}}px; border:0;" scrolling="no" width="336" height="{{result_arr['time']['current']['iframe_h']}}" src="{{result_arr['time']['current']['trailer_url']}}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	  <br style="clear:both;" />
+
+  	{% endif %}
+
+  	<br style="clear:both;" />
+
+	  <div class="link-details-television link-details-info">
+			<a href="{{result_arr['time']['current']['urlinfo']}}">&#9658; Info en Google</a> 
+		</div>
+		<div class="link-details-television link-details-video">
+			<a href="{{result_arr['time']['current']['urlvideo']}}">&#9658; V&iacute;deos de Google</a> 
+		</div>
+
+	  {% if result_arr['time']['current']['urlfilmaffinity'] is not null %}
+			<div class="link-details-television link-details-filmaffinity">
+				<a href="{{result_arr['time']['current']['urlfilmaffinity']}}">&#9658; FilmAffinity</a> 
+			</div>
+	  {% endif %}
+
+		{% if result_arr['time']['current']['channel_url'] %}
+	  	<div class="link-details-television link-details-web">
+	      <a href="{{ result_arr['time']['current']['channel_url'] }}">&#9658; Web {{ result_arr['time']['current']['channel_description']|striptags }}</a>
+	    </div>
+	  {% endif %}
+
+	  <br style="clear:both;" />
+	  <br style="clear:both;" />
+
+		{% if result_arr['time']['current']['image'] %}
+	    <div class="image-details-television">
+				<img src="{{ result_arr['time']['current']['image'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" />
+			</div>
+      <br style="clear:both;" />
+		{% endif %}
+
+		{% if result_arr['time']['current']['field_program_image_upload'] %}
+	    <div class="image-details-television">
+				<img src="{{ result_arr['time']['current']['field_program_image_upload'] }}" alt="imagen: {{ result_arr['time']['current']['title'] }}" title="{{ result_arr['time']['current']['title'] }}" height="{{ result_arr['time']['current']['field_program_image_upload_height'] }}" width="{{ result_arr['time']['current']['field_program_image_upload_width'] }}">
+			</div>
+      <br style="clear:both;" />
+		{% endif %}
+
+		{% if result_arr['time']['current']['tv_area_2'] %}
+	  	<div class="element-details-television area-2-details-television">
+		  	{{ result_arr['time']['current']['tv_area_2']|raw }}
+		  </div>
+
+			<br style="clear:both;" />
+			<br style="clear:both;" />
+
+	  {% endif %}
+
+	  {% if result_arr['time']['current']['tv_area_3'] %}
+	  	<div class="element-details-television area-3-details-television">
+		  	{{ result_arr['time']['current']['tv_area_3']|raw }}
+		  </div>
+		  <br style="clear:both;" />
+	  {% endif %}
+
+	  <!-- google_ad_section_end -->
+	</div> <!-- div details-television -->  
+	<br style="clear:both;" />
+
+	<div class="share">Compartir:</div>
+	<br style="clear:both;" />
+
+	<script type="text/javascript" async="async">
+	    var clean_title = "{{current['title']}}".replace("&#039;", "\'");
+		var msg = '{{current['category']}} > '+clean_title+'%0A{{ translated_day }} {{ current['day'] }} de {{ translated_month }}, {{ current['hour']}}:{{ current['minute'] }} en {{ current['channel_description']|striptags}}';  
+		var url = encodeURIComponent('https://www.tvguia.es'); 
+		var link = 'https://twitter.com/intent/tweet?text=' + msg + '&url=' + url +'&via=TVguia_es'; 
+		function openwindowtwitter(URL){window.open(link,'twitter','scrollbars=yes,menubar=no,height=420,width=500,resizable=yes,toolbar=no,location=yes,status=yes')};
+	</script>
+ 
+	<a href="javascript:openwindowtwitter('https://www.tvguia.es')">
+	<div class="twitter">
+		<div class="icon_twitter" title="Twitter"></div>Twitter</div>
+	</a>
+
+	<br style="clear:both;" />
+
+	<a href="whatsapp://send?text={{ result_arr['time']['current']['category'] }}>{{ result_arr['time']['current']['title'] }}%0A{{ translated_day }} {{ current['day'] }} {{ translated_month }}, {{ current['hour']}}:{{ current['minute'] }} en {{ current['channel_description']|striptags}} > www.tvguia.es "> <!-- {{current_url}} -->
+		<div class="whatsapp">
+			<div class="icon_whatsapp" title="WhatsApp"></div>
+			WhatsApp
+		</div>
+	</a>
+
+</div> <!-- detail-program-content -->
+<br style="clear:both;" />
+
+<a href="/mobile/programacion-tv?tmonth={{ month_back_url }}&tday={{ day_back_url }}&thour={{ hour_back_url }}" title="Programación TV">
+<div class="back-to-program">Volver a la guía TV</div>
+</a>
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<br style="clear:both;" />
+<div id="detect-ab"><div class="adBanner">&nbsp;</div></div>
+
+<!-- start swipe buttons -->
+{% if result_arr['time']['previou'] %}
+	<a href="/television/tv-serie-cine3/6/1/{{ prev_month_url }}/{{ prev_day_url }}/{{ result_arr['time']['previou']['hour'] }}/{{ result_arr['time']['previou']['minute'] }}/{{ arg['channel'] }}" class="swipe-previous swipe-button"><span class="swipe-tag"><span class="swipe-tag-title">Ant.</span><span class="swipe-tag-subtitle">&laquo;</span></span></a>  
+{% endif %}
+{% if result_arr['time']['next'] %}
+	<a href="/television/tv-serie-cine3/6/1/{{ next_month_url }}/{{ next_day_url }}/{{ result_arr['time']['next']['hour'] }}/{{ result_arr['time']['next']['minute'] }}/{{ arg['channel'] }}" class="swipe-next swipe-button"><span class="swipe-tag"><span class="swipe-tag-title">Sig.</span><span class="swipe-tag-subtitle">&raquo;</span></span></a>
+{% endif %}
+
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js'></script>
+
+<script type='text/javascript' async='async'>
+var coordenadas = $("#ad-swipe").offset()
+var scrollmove = coordenadas.top + 280 + 45 + 60 + 60 - window.innerHeight;
+
+jQuery(document).ready(function($)
+	{"use strict";
+	$(window).scroll(function()
+		{
+			if ($(this).scrollTop()>scrollmove) {$('.swipe-button').addClass('swipe-active');}
+			else {$('.swipe-button').removeClass('swipe-active');}
+		});
+	});
+
+window.onresize = function(event) 
+	{
+	var coordenadas = $("#ad-swipe").offset()
+	var scrollmove = coordenadas.top + 280 + 45 + 60 + 60 - window.innerHeight;
+	$(window).scroll(function()
+		{
+			if ($(this).scrollTop()>scrollmove) {$('.swipe-button').addClass('swipe-active');}
+			else {$('.swipe-button').removeClass('swipe-active');}
+		});
+	};
+</script>
+
+<!-- end swipe buttons -->
+
+<script>
+$(document).ready(function(){
+    if($("#detect-ab").height() > 0) {
+        //alert('No AdBlock');
+    } else {
+    document.getElementById('detail-program-content').innerHTML="<div class='details-television'><img src='/themes/tv_desktop/images/adblockplus.png' 'width='87' border='0' height='87' style='float:right; margin: 0 4px 0 2px;'><strong>La información del programa no está disponible si utilizas un bloqueador de publicidad.</strong><br/><br/>Para acceder a la infornación: <br/>- <strong>Agrega TVguia.es a la lista blanca (white list) de tu bloqueador</strong> de publicidad<br/>- o desactiva temporalmente el bloqueador, <br/>- a continuación, <a href=''>vuelve a cargar esta página.</a><br/><br/>TVguia.es se compromete :<br/>- a no utilizar pop-ups o pop-unders<br/>- a no obstaculizar tu experiencia de navegación con anuncios a pantalla completa<br/>- a no promover malware o contenido para adultos<br/>- a no poner anuncios con vídeo o sonido que se reproducen automáticamente...<br/><br/></div>";
+    }
+});
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-3690174-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-3690174-10');
+</script>

@@ -1,0 +1,150 @@
+{#
+/**
+ * @file
+ * Contains the text of the tvmachine_pages explanation page
+ *
+ */
+#}
+
+<br />
+<br />
+
+<div id='tvmachine_programs_channel_top'>
+	<div id='logo'>
+		<img src='{{logo_url}}' />
+	</div>
+	<div id='title'>
+		<h1> Programación {{title}}</h1>
+	</div>
+    <div id='subtitle'>del {{date}}</div>
+</div>
+
+<div id="tvmachine_programs_channel">
+
+	<a class="button-programs-channel{{strpos_uri_manana}}" title="Hoy" href="{{ uri_today }}">Hoy</a>
+	<a  class="button-programs-channel{{strpos_uri_manana_not}}" title="Ma&ntilde;ana" href="{{ uri_tomorow }}">Ma&ntilde;ana</a>
+	<a  class="button-programs-channel" title="Parrilla TV" href="/">Parrilla TV</a>
+	<br style="clear:both;">
+	<br />
+
+	<div style="display: inline; float:left; margin: 0px; width:770px;"> <!-- List of programs -->
+
+		<div class="channel-programs-main" style="display:inline; float:left;">
+
+			{% for program in tvm_view_result %}
+	      
+	      {% if program['timer1_adsense'] %}
+	      	<!-- <div style="width:730px; display: block; float: left; margin:10px 0px 20px 0px;">
+					ADSENSE
+					</div>
+					<br style="clear:both;" /> -->
+	      {% endif %}
+
+	      {% if program['timer2_adsense'] and channel_no_pub == 'ad' %}
+
+	      	<div id="timer2_adsense">
+
+			{% if "now"|date("d", "Europe/Paris") == '21' or "now"|date("d", "Europe/Paris") ==  '22' or "now"|date("d", "Europe/Paris") ==  '23' or "now"|date("d", "Europe/Paris") ==  '24' or "now"|date("d", "Europe/Paris") ==  '25' %}
+
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            	<!-- Bloque de 468 x 60 pixeles -->
+            	<ins class="adsbygoogle"
+            	     style="display:inline-block;width:468px;height:60px"
+            	     data-ad-client="ca-pub-6412530744130865"
+            	     data-ad-slot="4919572400"></ins>
+            	<script>
+            	(adsbygoogle = window.adsbygoogle || []).push({});
+            	</script>
+
+	        {% elseif "now"|date("d", "Europe/Paris") == '26' or "now"|date("d", "Europe/Paris") ==  '27' %}
+
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- OneData 468x60 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:468px;height:60px"
+                     data-ad-client="ca-pub-8975649173389036"
+                     data-ad-slot="6524242323"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+	        {% else %}
+
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-fb+5w+4e-db+86"
+                     data-ad-client="ca-pub-8975649173389036"
+                     data-ad-slot="5961915226"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+	        {% endif %}
+				</div>
+				<br />
+				<br />
+
+	      {% endif %}
+
+	      <div class="channel-row">
+			  	<div class="channel-programs-row channel-programs-time">
+						<a href="{{program['alias']}}">{{program['time_text']}}</a>
+					</div>
+
+					<div class="channel-programs-row channel-programs-title">
+						<a href="{{program['alias']}}"><b>{{program['title']}}</b></a>
+						<br />
+						<span class="text_{{program['bg_category']}}">{{program['category']}}</span>
+						</div>
+
+						<div id="descr">
+						{% if program['descr'] %}
+					  		<div class="channel-programs-row channel-programs-field_program_description_value">
+									<a href="{{program['alias']}}">{{ program['descr']|length > 200 ? program['descr']|slice(0, 200)|striptags ~ '...' : program['descr']|striptags }}</a>
+					  		</div>
+						{% endif %}
+			    </div>
+				</div>
+
+				<br style="clear:both;" />
+
+	    {% endfor %}
+
+		</div> <!-- channel-programs-main -->
+
+		<div id="bottom_script">	
+
+			{% if "now"|date("d", "Europe/Paris") == '21' or "now"|date("d", "Europe/Paris") ==  '22' or "now"|date("d", "Europe/Paris") ==  '23' or "now"|date("d", "Europe/Paris") ==  '24' or "now"|date("d", "Europe/Paris") ==  '25' %}
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			{% elseif "now"|date("d", "Europe/Paris") == '26' or "now"|date("d", "Europe/Paris") ==  '27' %}
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			{% else %}
+				<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- TV es channel 728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-8975649173389036"
+					 data-ad-slot="1864911635"></ins>
+				<script>
+					 (adsbygoogle = window.adsbygoogle || []).push({});
+				</script>	
+			{% endif %}
+
+		</div>
+
+		<br />
+		<br />
+
+	</div>  <!-- List of programs -->
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+</div>

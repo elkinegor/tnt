@@ -1,0 +1,107 @@
+{#
+/**
+ * @file
+ * Preprocess code in the TVMachineBlock1.php and in the TVMachineBlocksHelper.php 
+ */
+#} 
+
+{{ attach_library('tvmachine_blocks/temp_5') }}
+{{ attach_library('lazy/lazysizes') }}
+
+<div class="tv-program-listing-block temp_5">
+	<div style="width: 565px; padding-left: 5px;">
+
+		<a id="button-before-yesterday" class="tv-button button-yesterday" href="/mobile/programacion-tv?tmonth={{ day_vars['date02']['mon'] }}&tday={{ day_vars['date02']['mday'] }}&thour={{ js_vars['hour'] }}" title="Anteayer" target="_top" rel="nofollow">{{ day_vars['day02_l_replace'] }}</a>
+
+		<a id="button-yesterday" class="tv-button button-yesterday" href="/mobile/programacion-tv?tmonth={{ day_vars['date01']['mon'] }}&tday={{ day_vars['date01']['mday'] }}&thour={{ js_vars['hour'] }}" title="Ayer" target="_top" rel="nofollow">{{ day_vars['day01_l_replace'] }}</a>
+
+		<a id="button-today" class="tv-button button-today" href="/mobile/programacion-tv?tmonth={{ day_vars['date0']['mon'] }}&tday={{ day_vars['date0']['mday'] }}&thour={{ js_vars['hour'] }}" title="Hoy" target="_top" rel="nofollow">{{ day_vars['day1_l_replace'] }}</a>
+
+		<a id="button-tomorrow" class="tv-button button-tomorrow" href="/mobile/programacion-tv?tmonth={{ day_vars['date1']['mon'] }}&tday={{ day_vars['date1']['mday'] }}&thour={{ js_vars['hour'] }}" title="Ma&ntilde;ana" target="_top" rel="nofollow">{{ day_vars['day2_l_replace'] }}</a>
+{% if logged_in %}
+		<a id="button-after-tomorrow" class="tv-button button-tomorrow" href="/mobile/programacion-tv?tmonth={{ day_vars['date2']['mon'] }}&tday={{ day_vars['date2']['mday'] }}&thour={{ js_vars['hour'] }}" title="Pasado ma&ntilde;ana" target="_top" rel="nofollow">{{ day_vars['day3_l_replace'] }}</a>
+{% endif %}
+		<br style="clear:both;" />
+	</div>
+
+<div style="width: 565px; padding-left: 5px;">
+  <a id="button-00-02" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=1" target="_top" title="">00-02</a>
+  <a id="button-04-06" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=4" target="_top" title="">04-06</a>
+  <a id="button-08-10" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=8" target="_top" title="">08-10</a>
+  <a id="button-12-14" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=12" target="_top" title="">12-14</a>
+  <a id="button-16-18" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=16" target="_top" title="">16-18</a>
+  <a id="button-20-22" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=20" target="_top" title="">20-22</a>
+	<br style="clear:both;" />
+
+  <a id="button-02-04" rel="nofollow" class="tv-button button-time" style="margin-left:45px; margin-bottom:5px;" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=2" target="_top" title="">02-04</a>
+  <a id="button-06-08" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=6" target="_top" title="">06-08</a>
+  <a id="button-10-12" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=10" target="_top" title="">10-12</a>
+  <a id="button-14-16" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=14" target="_top" title="">14-16</a>
+  <a id="button-18-20" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=18" target="_top" title="">18-20</a>
+  <a id="button-22-24" rel="nofollow" class="tv-button button-time" href="/mobile/programacion-tv?tmonth={{ js_vars['month'] }}&tday={{ js_vars['day'] }}&thour=22" target="_top" title="">22-24</a>
+	<br style="clear:both;" />
+</div>
+ 
+<div style="width: 570px;">
+  <div class="tvtime"  style="width: 71px;">&nbsp;</div>
+  <div class="tvtime"  style="width: 39px;"><span class="tvtime-hour"></span></div>
+  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour"></span></div>
+  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour"></span></div>
+  <div class="tvtime"  style="width: 80px;">&nbsp;</div>
+  <div class="tvtime"  style="width: 40px;"><span class="tvtime-hour"></span></div>
+  <div class="tvtime"  style="width: 79px;">&nbsp;</div>
+  <div class="tvtime"  style="width: 21px;"><span class="tvtime-hour"></span></div>
+  <br style="clear:both;" />
+</div>
+
+
+<div id="ajax-here" class="program-grid" style="width:570px; background-color:#ffffff">{{ body | raw }}</div>
+
+
+<div style="width: 570px; background-color: #{{ args['color1'] }}; color: #{{ args['color3'] }}; border-top:solid 0px #{{ args['color3'] }};">
+<div class="tvcat" id="peliculas"><div class="cat_peliculas cat_peliculas_highlight"></div>Pel&iacute;culas</div>
+<div class="tvcat" id="series"><div class="cat_series cat_series_highlight"></div>Series</div>
+<div class="tvcat" id="deportes"><div class="cat_deportes cat_deportes_highlight"></div>Deportes</div>
+<div class="tvcat" id="infantil"><div class="cat_infantil cat_infantil_highlight"></div>Infantil</div>
+<div class="tvcat" id="entretenimiento"><div class="cat_entretenimiento cat_entretenimiento_highlight"></div>Entretenimiento</div>
+<div class="tvcat" id="documental"><div class="cat_documental cat_documental_highlight"></div>Mag/documental</div>
+<div class="tvcat" id="noticias"><div class="cat_noticias"></div>Noticias</div>
+<div class="tvcat" id="concursos"><div class="cat_concursos"></div>Concursos</div>
+<div class="tvcat" id="corazon" style="display:none;"><div class="cat_corazon"></div>Coraz&oacute;n</div>
+<div class="tvcat" id="reality" style="display:none;"><div class="cat_reality"></div>Reality</div>
+</div> 
+</div>
+<br style="clear:both;" />
+
+<script>
+
+	var base_url = '{{ js_vars['base_url'] }}'; 
+	var base_stylesheet_url = '{{ js_vars['base_url'] }}/{{ js_vars['tvmachine_path'] }}/css';
+	var path_view = '/program/ajax';
+	var path_tvmachine_img = '{{ js_vars['tvmachine_images_path'] }}';
+
+	window.tvmachine  = {
+	 template:"{{ js_vars['temp'] }}",
+	 sets:"{{ js_vars['set'] }}",
+	 month:"{{ js_vars['month'] }}",
+	 day:"{{ js_vars['day'] }}",
+	 hour:"{{ js_vars['hour'] }}",
+	 minute:"{{ js_vars['minute'] }}",
+	 color1:'FFFFFF',
+	 color2:'FFFFFF',
+	 color3:'313131',
+	 color4:'111111',
+	 base_url:"{{ js_vars['base_url'] }}",
+	 base_stylesheet_url:base_stylesheet_url,
+	 path_view:path_view,
+	 path_tvmachine_img:path_tvmachine_img,
+	 day1_j:"{{ day_vars['day1_j'] }}",
+	 day2_j:"{{ day_vars['day2_j'] }}",
+	 day3_j:"{{ day_vars['day3_j'] }}",
+	 day01_j:"{{ day_vars['day01_j'] }}",
+	 day02_j:"{{ day_vars['day02_j'] }}",
+	};
+	/* buttonsday_onload.js */
+</script>

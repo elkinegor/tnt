@@ -1,0 +1,120 @@
+
+{{ attach_library('tvmachine_blocks/tvmachine_iframe_setup') }}
+{{ attach_library('tvmachine_pages/tvmachine_iframe_setup') }}
+
+<script>
+	
+	window.tvmachine = {
+		base_url:"{{ base_url }}",
+		template:{{ default['template'] }},
+		//sets:{{ default['sets'] }},
+		month:{{ default['month'] }},
+		day:{{ default['day'] }},
+		hour:{{ default['hour'] }},
+		minute:"{{ default['minute'] }}",
+		color1:"{{ default['color1'] }}",
+		color2:"{{ default['color2'] }}",
+		color3:"{{ default['color3'] }}",
+		color4:"{{ default['color4'] }}",
+		mainframe_width: "{{mainframe_width}}",
+		mainframe_height: "{{mainframe_height}}",
+	};
+
+</script>
+
+<div id="webmasters" style="text-align:left;">
+	<br />
+	{{ top_description|raw }}
+	<br /><br /><br />
+
+	{% if fieldset == 1 %}
+		<fieldset>		
+		   <legend>{{'Choose Hour/Minute'|t}}</legend>		   
+	      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate">
+	         <tr>
+	            <td align="right">{{'Hour'|t}}:&nbsp;
+	            	<select id="select-hour">
+		            	{% for option_hour in options_hour %}
+									  <option value="{{ option_hour }}">{{ option_hour }}</option>
+									{% endfor %}           		
+	            	</select></td>
+	            <td align="left">{{'Minute'|t}}:&nbsp;
+	            	<select id="select-minute">
+	            		{% for key,option_minute in options_minute %}
+									  <option value="{{ key }}">{{ option_minute }}</option>
+									{% endfor %}             		
+	            	</select>
+	            </td>
+	         </tr>
+	      </table>	      
+		</fieldset>
+	{% endif %}
+<fieldset>
+	<legend>1. {{'Elige tus colores'|t}}:</legend>
+	<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate">
+		<tbody>
+		<tr>
+		<td width="10%">&nbsp;</td>
+		<td width="27%">{{'Color de fondo exterior'|t}}</td>
+		<td width="9%"><input type="text" id="input_field_1" size="9" value="" /></td>
+		<td width="2%"><input type="text" id="sample_1" size="1" value="" alt="sample_color1" /></td>
+		<td width="2%"><img onclick="showColorGrid2('input_field_1','sample_1');" style="cursor: pointer;" src="{{ path_tvmachine_img }}/palette.png" alt="" /></td>
+		<td width="50%" ><div id="colorpicker201" class="colorpicker201">&nbsp;</div></td>
+		</tr>
+		<tr>
+		<td width="10%" >&nbsp;</td>
+		<td width="27%">{{'Color de fondo interior'|t}}</td>
+		<td width="9%"><input type="text" id="input_field_2" size="9" value="" /></td>
+		<td width="2%"><input type="text" id="sample_2" size="1" value="" alt="sample_color2" /></td>
+		<td width="2%"><img onclick="showColorGrid2('input_field_2','sample_2');" style="cursor: pointer;" src="{{ path_tvmachine_img }}/palette.png" alt="" /></td>
+		<td width="50%" ><div id="colorpicker201" class="colorpicker201">&nbsp;</div></td>
+		</tr>
+		<tr>
+		<td width="10%" >&nbsp;</td>
+		<td width="27%">{{'Color de l&iacute;neas'|t}}</td>
+		<td width="9%"><input type="text" id="input_field_3" size="9" value="" /></td>
+		<td width="2%"><input type="text" id="sample_3" size="1" value="" alt="sample_color3" /></td>
+		<td width="2%"><img onclick="showColorGrid2('input_field_3','sample_3');" style="cursor: pointer;" src="{{ path_tvmachine_img }}/palette.png" alt="" /></td>
+		<td width="50%" ><div id="colorpicker201" class="colorpicker201">&nbsp;</div></td>
+		</tr>
+		<tr>
+		<td width="10%" >&nbsp;</td>
+		<td width="27%">{{'Color de texto'|t}}</td>
+		<td width="9%"><input type="text" id="input_field_4" size="9" value="" /></td>
+		<td width="2%"><input type="text" id="sample_4" size="1" value="" alt="sample_color4" /></td>
+		<td width="2%"><img onclick="showColorGrid2('input_field_4','sample_4');" style="cursor: pointer;" src="{{ path_tvmachine_img }}/palette.png" alt="" /></td>
+		<td width="50%" ><div id="colorpicker201" class="colorpicker201">&nbsp;</div></td>
+		</tr>
+		<tr>
+			<td width="10%" >&nbsp;</td>
+			<td width="40%" align="right" colspan="4">
+				<div>
+					<br />
+					<button type="button" id="preview-colors" >{{'Actualiza el c&oacute;digo'|t}}</button>
+				</div>
+			</td>
+			<td width="50%" >&nbsp;</td>	
+		</tr>
+		</tbody>
+	</table> 
+	</fieldset>
+	<br />
+	<fieldset>
+	<legend>2. {{'Copia el c&oacute;digo en tu Web'|t}}</legend>
+	<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate">
+		<tr>
+			<td align="center"><p>{{'Copia y pega este c&oacute;digo en cualquier secci&oacute;n de tu p&aacute;gina Web o de tu blog.'|t}}</p></td>
+		</tr>
+		<tr>
+			<td>            
+        <textarea id="textarea" rows="5" cols="60" style="width:700px;text-align:left;padding:3px;"><iframe name="mainframe" id="mainframe" src="{{default_textarea}}" scrolling="no" width="{{mainframe_width}}" height="{{mainframe_height}}" frameborder="0" marginwidth="0" marginheight="0"></iframe><noscript><a href="https://www.tvguia.es">{{'Programacion TV'|t}}</a></noscript></textarea>   
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+</div>
+<br />
+<div>{{'Previsualizaci&oacute;n'|t}} :</div>
+<br />
+<iframe name="mainframe" id="mainframe" src="{{default_textarea}}" scrolling="no" width="{{ mainframe_width }}" height="{{ mainframe_height }}" frameborder="0" marginwidth="0" marginheight="0"></iframe>
+<br /><br /><br /><br /><br />
